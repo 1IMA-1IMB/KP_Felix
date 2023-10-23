@@ -1,0 +1,49 @@
+.container1 {
+ display: flex;
+ justify-content: space-between;
+}
+.div1 {
+    border: 2px solid black;
+    width: 150px;
+    height: 700px;
+    text-align: center;
+}
+.div1 p {
+    position: relative;
+    top: 50%;
+}
+.div2 {
+    border: 2px solid black;
+    width: 150px;
+    height: 700px;
+}
+.container2 {
+    position: absolute;
+    top: 8px;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+.div3 { 
+    width: 943px;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.div3 div {
+    border: 2px solid black;
+    width: 100px;
+    text-align: center;
+    
+}
+.div4 {
+    border: 2px solid black;
+    margin-top: 0;
+    height: 600px;
+    font-size: 50px;
+    width: 939px;
+}
