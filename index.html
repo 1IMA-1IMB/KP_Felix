@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS</title>
+    <link rel="stylesheet" href="./CSS/style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="game">
+        <h1>Welcome to avocado clicker</h1>
+        <h2 id="ammount">Avocado's: 0</h2>
+        <h3 id="apers"></h3>
+        <button class="fruitbt" onclick="addavocado()"><img src="./images/avocado-fruit-illustration-cartoon-png.png" alt="" srcset=""></button>
+    </div>
+    <div class="autofarms">
+        <h1>Autofarms: </h1>
+        <button id="acfarm" onclick="autofarm()">
+            <h1>Avocado Farms +1 avocado/s</h1>
+            <p id="acfprice">Price: 10</p>
+            <h3 id="acfa">0</h3>
+            <p id="acfnen"></p>
+        </button>
+        <button id="Avocado store" onclick="avocadostore()">
+            <h1>Avocado Stores +10 avocado/s</h1>
+            <p id="asprice">Price: 500</p>
+            <h3 id="asa">0</h3>
+            <p id="asnen"></p>
+        </button>
+    </div>
+    <div class="upgrades">
+        <h1>Upgrades: </h1>
+        <button id="2x" onclick="twox()">
+            <h1>10x Avocado's every clck</h1>
+            <p id="2xprice">Price: 1000</p>
+            <p id="2xnen"></p>
+        </button>
+        <button id="Autofarmx3" onclick="autofarmx3()">
+            <h1>3x Autofarms efficiency</h1>
+            <p id="3xafprice">Price: 300</p>
+            <p id="3xafnen"></p>
+        </button>
+    </div>
+</body>
+</html>
