@@ -1,0 +1,76 @@
+:root {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: lightgrey;
+  border-radius: 25px;
+}
+.buttonsdiv {
+  display: flex;
+  align-items: center;
+  width: 500px;
+  justify-content: space-between;
+}
+
+.abutton {
+  background-color: rgb(48, 104, 201);
+  border: 0px solid;
+  height: 50px;
+  width: 150px;
+  border-radius: 25px;
+  margin-top: 25px;
+  font-size: 30px;
+  color: white;
+  margin-right: 10px;
+}
+.dbutton {
+  background-color: grey;
+  border: 0px solid;
+  height: 50px;
+  width: 150px;
+  border-radius: 25px;
+  margin-top: 25px;
+  font-size: 30px;
+  color: white;
+  margin-left: 10px;
+}
+
+.ninput {
+  height: 20vh;
+  width: 80%;
+  border-radius: 25px;
+  margin-top: 10px;
+  border: 0px solid;
+}
+.notestored {
+  height: 50vh;
+  width: 80%;
+  border-radius: 25px;
+  background-color: grey;
+  overflow: auto;
+}
+
+.dbutton:hover {
+  background-color: darkgrey;
+  cursor: pointer;
+}
+.abutton:hover {
+  background-color: rgb(103, 141, 255);
+  cursor: pointer;
+}
+.storedtext p {
+  margin: 5px;
+  background-color: white;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+}
