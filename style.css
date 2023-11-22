@@ -1,0 +1,119 @@
+:root {
+    --imagebgcollor: #c425d9;
+    --logofontsize: 50px;
+    --ambgcolor: #3b3a3b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Nav-bar display directons */
+.nav {
+    display: flex;
+    width: 100%;
+    height: 75px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
+    justify-content: space-between;
+    position: absolute;
+    top: 0;
+}
+/* Nav bar logo text */
+.logo h1 {
+    font-size: var(--logofontsize);
+    margin: 7.5px;
+}
+
+/*Nav bar links*/
+.navlinks {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*Nav bar links decoration*/
+
+.navlinks a {
+    text-decoration: none;
+    text-align: center;
+    margin: 30px;
+    font-size: 25px;
+    color: black;
+}
+
+/* Nav bar links hover effects*/
+
+.navlinks a:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--imagebgcollor);
+    text-decoration-thickness: 3px;
+    text-underline-offset: 8px;
+}
+
+/* Size of main box and flex display for all elements */
+.main {
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* Size of main Image */
+
+.main img {
+    width: 250px;
+    height: 300px;
+}
+
+/* Size and flex of main box/sircle*/
+
+.mainbox {
+    width: 400px;
+    height: 400px;
+    border-radius: 400px;
+    background-color: var(--imagebgcollor);
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/*Main text div for distancing between mainbox */
+
+.maintext {
+    width: 50%;
+}
+
+/* Change color of Felix in h1 */
+
+.main span {
+    color: var(--imagebgcollor);
+}
+
+/*Change size of main text */
+.maintext h1 {
+    font-size: 45px;
+}
+
+.aboutme {
+    height: 100vh;
+    width: 100%;
+    background-color: var(--ambgcolor);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.amimg img {
+    width: 250px;
+    height: 300px;
+}
+
+
+
