@@ -952,6 +952,7 @@ html {
         justify-content: center;
         flex-direction: column;
         text-align: center;
+        width: 80%;
     }
     .projects {
         width: 100%;
@@ -988,11 +989,13 @@ html {
         width: 80%;
     }
 }
+
 .hidden {
     opacity: 0;
     transition: all 1s;
     z-index: 0;
 }
+
 .show {
     opacity: 1;
 }
