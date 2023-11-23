@@ -26,3 +26,16 @@ function menu(){
         document.getElementById('menuimg').src = "./images/menu (1).svg"
     }
 }
+
+const button = document.getElementById('upbutton')
+
+window.onscroll = function() {scrollfunction()} 
+
+function scrollfunction(){
+    if(document.body.scrollTop > 20 || document.documentElement.scrollTop > 20){
+        button.classList.add('arrow')
+    } else {
+        button.classList.remove('arrow')
+    }
+}
+

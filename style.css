@@ -20,6 +20,22 @@ html {
     scroll-behavior: smooth;
 }
 
+.visible {
+    opacity: 0;
+}
+
+.arrow {
+    width: 50px;
+    height: 50px;
+    float: right;
+    margin-right: 10px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    filter: invert(50%);
+    opacity: 1;
+}
+
 .hiddenmenu {
     opacity: 0;
     overflow: hidden;
@@ -46,6 +62,10 @@ html {
     top: 0;
     overflow: hidden;
     position: static;
+}
+
+.logo {
+    overflow: hidden;
 }
 /* Nav bar logo text */
 .logo h1 {
@@ -947,6 +967,9 @@ html {
     .sbuttons {
         display: flex;
         flex-direction: column;
+    }
+    .amtext {
+        width: 80%;
     }
 }
 .hidden {
