@@ -589,6 +589,7 @@ html {
         align-items: center;
         justify-content: center;
         border-radius: 25px;
+        z-index: 99;
     }
     .showmenu p {
         font-size: 25px;
