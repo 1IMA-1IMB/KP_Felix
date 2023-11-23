@@ -12,9 +12,6 @@
     overflow-x: hidden;
 }
 
-body {
-    background-color: white;
-}
 
 html {
     scroll-behavior: smooth;
@@ -62,6 +59,7 @@ html {
     top: 0;
     overflow: hidden;
     position: static;
+    background-color: white;
 }
 
 .logo {
@@ -107,6 +105,7 @@ html {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    background-color: white;
 }
 
 /* Size of main Image */
@@ -207,6 +206,7 @@ html {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    background-color: white;
 }
 
 .projectsbtns {
@@ -239,6 +239,7 @@ html {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background-color: white;
 }
 
 .stext {
@@ -934,11 +935,15 @@ html {
     .projects p {
         font-size: 20px;
     }
+    .stext {
+        text-align: center;
+    }
     .ptxt {
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
+        text-align: center;
     }
     .projects {
         width: 100%;
