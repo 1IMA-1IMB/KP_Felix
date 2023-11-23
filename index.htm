@@ -6,6 +6,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald&family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Document</title>
 </head>
 <body>
@@ -13,16 +15,27 @@
         <div class="logo">
             <h1>Felix</h1>
         </div>
-        <div class="navlinks">
+        <div class="navlinks hidden2">
             <a href="#home"><p>Home</p></a>
             <a href="#aboutme"><p>About me</p></a>
             <a href="#projects"><p>Projects</p></a>
             <a href="#socials"><p>Socials</p></a>
         </div>
-    </div>
+        <div class="show1">
+            <button class="menubutton" onclick="menu()"><img src="./images/menu (1).svg" class="show1" id="menuimg"></button>
+            <div class="navmenu hiddenmenu" id="menu2">
+                <a href="#home"><p>Home</p></a>
+                <a href="#aboutme"><p>About me</p></a>
+                <a href="#projects"><p>Projects</p></a>
+                <a href="#socials"><p>Socials</p></a>
+            </div>
+        </div>
+        </div>
     <div class="main" id="main">
-        <div class="maintext">
-            <h1>I'm <span>Felix</span>, a student working towards becomming a developer</h1>
+        <div class="maintext hidden">
+            <h1>I'm <span>Felix</span>, a student working towards becoming a developer</h1>
+
+            <a href="https://github.com/Glafyr"><button><img src="./images/github.png" alt=""><p>Github</p></button></a>
         </div>
         <div class="mainbox">
             <img src="./images/person-icon-1682.png" alt="">
@@ -32,19 +45,46 @@
         <div class="amimg">
             <img src="./images/white-question-mark.svg" alt="">
         </div>
-        <div class="amtext">
-            <h1>Who is <span>Felix</span>?</h1>
-            <p></p>
+        <div class="amtext hidden">
+            <h1>A bit about me!</h1>
+            <p>Hi, I'm <span>Felix</span>, i am a student at Drøm Torp VGS where i am currently going information technology and media production. I have many hobbies, i like programming, playing videogames and playing the saxophone. In the future i hope to be able to work with computers and programming.</p>
         </div>
     </div>
     <div class="projects" id="projects">
-
+        <div class="pmain hidden">
+            <div class="ptxt">
+                <h1>Projects</h1>
+                <p>Here you have some projects I have made in school</p>
+            </div>
+            <div class="projectsbtns">
+                <a href="./avocadoclicker/index.html"><button><p>Avocado Clicker</p></button></a>
+                <a href="./bildeopg/index.html"><button><p>Immage Task</p></button></a>
+                <a href="./blog/index.html"><button><p>Blog</p></button></a>
+                <a href="./Droppbox_oppgave/index.html"><button><p>Droppbox Task</p></button></a>
+                <a href="./media-query/index.html"><button><p>Media-Query Test</p></button></a>
+                <a href="./bursdagside/index.html"><button><p>Birthday Task</p></button></a>
+            </div>
+        </div>
+        <div class="pimg">
+            <img src="./images/code.png" alt="">
+        </div>
     </div>
     <div class="socials" id="socials">
-
+        <div class="stext hidden">
+            <h1>Social Media</h1>
+            <p>Under here you can find a link to some of my socialls</p>
+        </div>
+        <div class="sbuttons">
+            <a href="https://www.tiktok.com/@___glafyr___" class="tiktok"><button><p>Tiktok</p></button></a>
+            <a href="https://www.youtube.com/channel/UCW9WdqWa04tB9t5R-M8xNxw" class="youtube"><button><p>Youtube</p></button></a>
+        </div>
     </div>
     <div class="footer">
-
+        <div class="contact hidden">
+            <h1>Contact</h1>
+            <p>Phone: +4793071507</p>
+            <p>Mail: felixbor@viken.no</p>
+        </div>
     </div>
 </body>
 </html>

@@ -2,18 +2,35 @@
     --imagebgcollor: #c425d9;
     --logofontsize: 50px;
     --ambgcolor: #3b3a3b;
+    --projbgcolor: #383862;
 }
 
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', sans-serif
+    font-family: 'Roboto', sans-serif;
+    overflow-x: hidden;
 }
 
 html {
     scroll-behavior: smooth;
 }
 
+.hiddenmenu {
+    opacity: 0;
+    overflow: hidden;
+    width: 0;
+    height: 0;
+}
+.navmenu {
+    overflow: hidden;
+    width: 0;
+    height: 0;
+}
+.menubutton {
+    opacity: 0;
+    overflow: hidden;
+}
 /* Nav-bar display directons */
 .nav {
     display: flex;
@@ -23,11 +40,14 @@ html {
     justify-content: space-between;
     position: absolute;
     top: 0;
+    overflow: hidden;
+    position: static;
 }
 /* Nav bar logo text */
 .logo h1 {
     font-size: var(--logofontsize);
     margin: 7.5px;
+    z-index: 99;
 }
 
 /*Nav bar links*/
@@ -35,6 +55,7 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
 /*Nav bar links decoration*/
@@ -53,7 +74,7 @@ html {
     text-decoration: underline;
     text-decoration-color: var(--imagebgcollor);
     text-decoration-thickness: 3px;
-    text-underline-offset: 8px;
+    text-underline-offset: 4px;
 }
 
 /* Size of main box and flex display for all elements */
@@ -90,6 +111,33 @@ html {
     width: 50%;
 }
 
+.maintext button img {
+    width: 40px;
+    height: 40px;
+    filter: invert();
+}
+
+.maintext a {
+    text-decoration: none;
+    margin: 40px;
+}
+
+.maintext button {
+    width: 150px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border: 0px solid black;
+    background-color: var(--imagebgcollor);
+    border-radius: 25px;
+    color: white;
+}
+
+.maintext button:hover {
+    cursor: pointer;
+    background-color: #ed67ff;
+}
 /* Change color of Felix in h1 */
 
 .main span {
@@ -110,10 +158,801 @@ html {
     align-items: center;
 }
 
+.aboutme p {
+    color: white;
+}
+.aboutme h1 {
+    color: white;
+    margin-bottom: 20px;
+}
+.aboutme span {
+    color: var(--imagebgcollor);
+}
+
+.amtext {
+    width: 25%;
+}
+
 .amimg img {
     width: 250px;
     height: 300px;
 }
+.projects {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.projectsbtns {
+    display: grid;
+    grid-template-columns: 150px 150px;
+}
+.projectsbtns button {
+    width: 100px;
+    height: 50px;
+    margin: 10px;
+    background-color: var(--projbgcolor);
+    color: white;
+    border-radius: 10px;
+    border: 0px solid black;
+}
+
+.projectsbtns button:hover {
+    cursor: pointer;
+    background-color: #666682;
+}
+.pimg img {
+    width: 400px;
+    height: 350px;
+}
+
+.socials {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.stext {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.stext h1 {
+    font-size: 40px;
+}
+.stext p {
+    font-size: 35px;
+}
+.sbuttons button {
+    width: 150px;
+    height: 50px;
+    border-radius: 25px;
+    margin: 20px;
+    border: 0px solid black;
+}
+
+.youtube button {
+    background-color: rgb(220, 63, 63);
+}
+
+.youtube button:hover {
+    background-color: rgb(255, 148, 148);
+    cursor: pointer;
+}
+
+.sbuttons p {
+    color: white;
+}
+.tiktok button {
+    background-color: rgb(46, 46, 70);
+}
+.tiktok button:hover {
+    cursor: pointer;
+    background-color: rgb(76, 76, 103);
+}
+.footer {
+    height: 50vh;
+    width: 100%;
+    background-color: black;
+}
+.contact h1 {
+    color: white;
+    margin: 20px;
+}
+.contact p {
+    color: white;
+    margin: 20px;
+}
+
+
+@media only screen and (max-width: 1920px){
+    .maintext {
+        width: 30%;
+    }
+    .main img {
+        width: 350px;
+        height: 450px;
+    }
+    
+    /* Size and flex of main box/sircle*/
+    
+    .mainbox {
+        width: 550px;
+        height: 550px;
+    }
+    .maintext button img {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .maintext button {
+        width: 300px;
+        height: 100px;
+    }
+
+    .maintext p {
+        font-size: 30px;
+    }
+    .aboutme p {
+        font-size: 30px;
+    }
+    .aboutme h1 {
+        font-size: 45px;
+    }
+    .amimg img {
+        width: 500px;
+        height: 600px;
+    }
+
+    .projects p {
+        font-size: 30px;
+    }
+
+    .projects h1 {
+        font-size: 45px;
+    }
+    .projectsbtns {
+        display: grid;
+        grid-template-columns: 300px 300px;
+    }
+    .projectsbtns button {
+        width: 250px;
+        height: 125px;
+        margin: 10px;
+    }
+    .projectsbtns p {
+        font-size: 30px;
+    }
+    .pimg img {
+        width: 600px;
+        height: 500px;
+    }
+    .stext h1 {
+        font-size: 60px;
+    }
+    .stext p {
+        font-size: 50px;
+    }
+    .sbuttons button {
+        width: 300px;
+        height: 100px;
+        border-radius: 50px;
+    }
+    .sbuttons p {
+        font-size: 50px;
+    }
+    .contact h1 {
+        font-size: 45px;
+    }
+    .contact p {
+        font-size: 30px;
+    }   
+}
+@media only screen and (max-width: 1217px){
+    .main img {
+        width: 250px;
+        height: 300px;
+    }
+    
+    /* Size and flex of main box/sircle*/
+    
+    .mainbox {
+        width: 400px;
+        height: 400px;
+    }
+    .maintext h1 {
+        font-size: 40px;
+    }
+
+    .maintext a {
+        font-size: 25px;
+    }
+    .maintext {
+        width: 30%;
+    }
+    .aboutme p {
+        font-size: 25px;
+    }
+    .aboutme h1 {
+        font-size: 35px;
+    }
+    .amimg img {
+        width: 450px;
+        height: 550px;
+    }
+
+    .projects p {
+        font-size: 25px;
+    }
+
+    .projects h1 {
+        font-size: 35px;
+    }
+    .projectsbtns {
+        display: grid;
+        grid-template-columns: 250px 250px;
+    }
+    .projectsbtns button {
+        width: 200px;
+        height: 100px;
+        margin: 10px;
+    }
+    .projectsbtns p {
+        font-size: 25px;
+    }
+    .pimg img {
+        width: 500px;
+        height: 400px;
+    }
+    .stext h1 {
+        font-size: 50px;
+    }
+    .stext p {
+        font-size: 40px;
+    }
+    .sbuttons button {
+        width: 250px;
+        height: 75px;
+        border-radius: 50px;
+    }
+    .sbuttons p {
+        font-size: 40px;
+    }
+    .contact h1 {
+        font-size: 40px;
+    }
+    .contact p {
+        font-size: 25px;
+    }   
+}
+
+@media only screen and (max-width: 1006px){
+    .main img {
+        width: 200px;
+        height: 250px;
+    }
+    /* Size and flex of main box/sircle*/
+    
+    .mainbox {
+        width: 300px;
+        height: 300px;
+    }
+    .maintext h1 {
+        font-size: 30px;
+    }
+
+    .maintext a {
+        font-size: 20px;
+    }
+    .maintext {
+        width: 30%;
+    }
+    .maintext button img {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .maintext button {
+        width: 250px;
+        height: 75px;
+    }
+    .aboutme p {
+        font-size: 20px;
+    }
+    .aboutme h1 {
+        font-size: 30px;
+    }
+    .amimg img {
+        width: 375px;
+        height: 475px;
+    }
+
+    .projects p {
+        font-size: 25px;
+    }
+
+    .projects h1 {
+        font-size: 35px;
+    }
+    .projectsbtns {
+        display: grid;
+        grid-template-columns: 225px 225px;
+    }
+    .projectsbtns button {
+        width: 175px;
+        height: 80px;
+        margin: 10px;
+    }
+    .projectsbtns p {
+        font-size: 20px;
+    }
+    .pimg img {
+        width: 450px;
+        height: 375px;
+    }
+    .stext h1 {
+        font-size: 40px;
+    }
+    .stext p {
+        font-size: 30px;
+    }
+    .sbuttons button {
+        width: 225px;
+        height: 70px;
+        border-radius: 50px;
+    }
+    .sbuttons p {
+        font-size: 35px;
+    }
+    .contact h1 {
+        font-size: 35px;
+    }
+    .contact p {
+        font-size: 20px;
+    }   
+}
+
+@media only screen and (max-width: 1000px){
+    .main img {
+        width: 0px;
+        height: 0px;
+        opacity: 0;
+    }
+    .show1 {
+        width: 200px;
+        height: 400px;
+    }
+    .menubutton {
+        opacity: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+        background: none;
+        border: 0px solid black;
+    }
+    .menubutton:hover {
+        cursor: pointer;
+    }
+    .navlinks {
+        width: 0%;
+    }
+    .showmenu {
+        opacity: 1;
+        width: 150px;    
+        height: 400px;
+        position: absolute;
+        margin-right: 40px;
+        background-color: rgb(130, 130, 130);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 25px;
+    }
+    .showmenu p {
+        font-size: 25px;
+        margin: 20px;
+    }
+    .showmenu a {
+        color: white;
+        text-decoration: none;
+    }
+
+    .showmenu a:hover {
+        .navlinks a:hover {
+            text-decoration: underline;
+            text-decoration-color: var(--imagebgcollor);
+            text-decoration-thickness: 3px;
+            text-underline-offset: 4px;
+        }
+        
+    }
+    .showmenu {
+        opacity: 1;
+    }
+    .hidden2 {
+        opacity: 0;
+    }
+    .show1 {
+        opacity: 1;
+    }
+
+    .show1 img {    
+        width: 60px;
+        height: 60px;
+        margin-right: 20px;
+    }
+    .main {
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Size and flex of main box/sircle*/
+    
+    .mainbox {
+        width:  0px;
+        height: 0px;
+        opacity: 0;
+    }
+    .maintext h1 {
+        font-size: 30px;
+    }
+
+    .maintext a {
+        font-size: 20px;
+    }
+    .maintext {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .maintext button img {
+        width: 50px;
+        height: 50px;
+        opacity: 1;
+    }
+    
+    .maintext button {
+        width: 250px;
+        height: 75px;
+    }
+    .amtext {
+        width: 40%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .aboutme {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+    .aboutme p {
+        font-size: 20px;
+    }
+    .aboutme h1 {
+        font-size: 30px;
+    }
+    .amimg img {
+        width: 0px;
+        height: 0px;
+        opacity: 0;
+    }
+
+    .projects p {
+        font-size: 25px;
+    }
+    .ptxt {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .projects {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .projects h1 {
+        font-size: 35px;
+    }
+    .projectsbtns {
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        grid-template-columns: 225px 225px;
+    }
+    .projectsbtns button {
+        width: 175px;
+        height: 80px;
+        margin: 10px;
+    }
+    .projectsbtns p {
+        font-size: 20px;
+    }
+    .pimg img {
+        width: 0px;
+        height: 0px;
+        opacity: 0;
+    }
+    .stext h1 {
+        font-size: 40px;
+    }
+    .stext p {
+        font-size: 30px;
+    }
+    .sbuttons button {
+        width: 225px;
+        height: 70px;
+        border-radius: 50px;
+    }
+    .sbuttons p {
+        font-size: 35px;
+    }
+    .contact h1 {
+        font-size: 35px;
+    }
+    .contact p {
+        font-size: 20px;
+    }   
+}
+
+@media only screen and (max-height: 818px){
+    .main img {
+        width: 0px;
+        height: 0px;
+        opacity: 0;
+    }
+    .show1 {
+        width: 200px;
+        height: 400px;
+    }
+    .menubutton {
+        opacity: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+        background: none;
+        border: 0px solid black;
+    }
+    .menubutton:hover {
+        cursor: pointer;
+    }
+    .navlinks {
+        width: 0%;
+    }
+    .showmenu {
+        opacity: 1;
+        width: 150px;    
+        height: 400px;
+        position: absolute;
+        margin-right: 40px;
+        background-color: rgb(130, 130, 130);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 25px;
+    }
+    .showmenu p {
+        font-size: 25px;
+        margin: 20px;
+    }
+    .showmenu a {
+        color: white;
+        text-decoration: none;
+    }
+
+    .showmenu a:hover {
+        .navlinks a:hover {
+            text-decoration: underline;
+            text-decoration-color: var(--imagebgcollor);
+            text-decoration-thickness: 3px;
+            text-underline-offset: 4px;
+        }
+        
+    }
+    .showmenu {
+        opacity: 1;
+    }
+    .hidden2 {
+        opacity: 0;
+    }
+    .show1 {
+        opacity: 1;
+    }
+
+    .show1 img {    
+        width: 60px;
+        height: 60px;
+        margin-right: 20px;
+    }
+    .main {
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Size and flex of main box/sircle*/
+    
+    .mainbox {
+        width:  0px;
+        height: 0px;
+        opacity: 0;
+    }
+    .maintext h1 {
+        font-size: 30px;
+    }
+
+    .maintext a {
+        font-size: 20px;
+    }
+    .maintext {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .maintext button img {
+        width: 50px;
+        height: 50px;
+        opacity: 1;
+    }
+    
+    .maintext button {
+        width: 250px;
+        height: 75px;
+    }
+    .amtext {
+        width: 40%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .aboutme {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+    .aboutme p {
+        font-size: 20px;
+    }
+    .aboutme h1 {
+        font-size: 30px;
+    }
+    .amimg img {
+        width: 0px;
+        height: 0px;
+        opacity: 0;
+    }
+
+    .projects p {
+        font-size: 25px;
+    }
+    .ptxt {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .projects {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .projects h1 {
+        font-size: 35px;
+    }
+    .projectsbtns {
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        grid-template-columns: 225px 225px;
+    }
+    .projectsbtns button {
+        width: 175px;
+        height: 80px;
+        margin: 10px;
+    }
+    .projectsbtns p {
+        font-size: 20px;
+    }
+    .pimg img {
+        width: 0px;
+        height: 0px;
+        opacity: 0;
+    }
+    .stext h1 {
+        font-size: 40px;
+    }
+    .stext p {
+        font-size: 30px;
+    }
+    .sbuttons button {
+        width: 225px;
+        height: 70px;
+        border-radius: 50px;
+    }
+    .sbuttons p {
+        font-size: 35px;
+    }
+    .contact h1 {
+        font-size: 35px;
+    }
+    .contact p {
+        font-size: 20px;
+    }   
+}
+@media screen and (max-width: 700px) {
+    .projects p {
+        font-size: 20px;
+    }
+    .ptxt {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .projects {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .projects h1 {
+        font-size: 35px;
+    }
+    .projectsbtns {
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        grid-template-columns: 150px 150px;
+    }
+    .projectsbtns button {
+        width: 120px;
+        height: 75px;
+        margin: 5px;
+    }
+    .projectsbtns p {
+        font-size: 15px;
+    }
+    .sbuttons {
+        display: flex;
+        flex-direction: column;
+    }
+}
+.hidden {
+    opacity: 0;
+    transition: all 1s;
+}
+.show {
+    opacity: 1;
+}
+
 
 
 
