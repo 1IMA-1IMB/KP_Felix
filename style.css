@@ -568,6 +568,8 @@ html {
         height: 60px;
         background: none;
         border: 0px solid black;
+        position: relative;
+        left: 100px;
     }
     .menubutton:hover {
         cursor: pointer;
