@@ -12,6 +12,10 @@
     overflow-x: hidden;
 }
 
+body {
+    background-color: white;
+}
+
 html {
     scroll-behavior: smooth;
 }
