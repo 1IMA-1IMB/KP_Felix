@@ -981,6 +981,9 @@ html {
     .amtext {
         width: 80%;
     }
+    .maintext {
+        width: 90%;
+    }
 }
 .hidden {
     opacity: 0;
