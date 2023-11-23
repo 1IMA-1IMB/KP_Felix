@@ -12,9 +12,14 @@
     overflow-x: hidden;
 }
 
+body {
+    padding: 0;
+    margin: 0;
+}
 
 html {
     scroll-behavior: smooth;
+    scroll-padding: 0;
 }
 
 .visible {
@@ -53,7 +58,7 @@ html {
     display: flex;
     width: 100%;
     height: 75px;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, .2);
     justify-content: space-between;
     position: absolute;
     top: 0;
@@ -101,7 +106,7 @@ html {
 
 /* Size of main box and flex display for all elements */
 .main {
-    height: 100vh;
+    height: 105vh;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -173,7 +178,7 @@ html {
 }
 
 .aboutme {
-    height: 100vh;
+    height: 105vh;
     width: 100%;
     background-color: var(--ambgcolor);
     display: flex;
@@ -202,7 +207,7 @@ html {
 }
 .projects {
     width: 100%;
-    height: 100vh;
+    height: 105vh;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -234,7 +239,7 @@ html {
 
 .socials {
     width: 100%;
-    height: 100vh;
+    height: 105vh;
     display: flex;
     justify-content: center;
     align-items: center;
