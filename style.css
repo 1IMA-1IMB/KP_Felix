@@ -757,14 +757,16 @@ html {
         height: 400px;
     }
     .menubutton {
-        opacity: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 60px;
-        height: 60px;
-        background: none;
-        border: 0px solid black;
+            opacity: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: none;
+            border: 0px solid black;
+            position: relative;
+            left: 130px;
     }
     .menubutton:hover {
         cursor: pointer;
