@@ -35,6 +35,7 @@ html {
     bottom: 20px;
     right: 20px;
     filter: invert(50%);
+    z-index: 99999;
     opacity: 1;
 }
 
