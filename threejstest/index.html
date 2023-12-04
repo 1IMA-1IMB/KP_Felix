@@ -3,11 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "https://unpkg.com/three@<version>/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@<version>/examples/jsm/"
+          }
+        }
+      </script>
     <title>first three.js app</title>
     <link rel="stylesheet" href="style.css">
-    <script type="module" src="main.js"></script>
 </head>
 <body>
-    
+    <script type="module" src="main.js"></script>
 </body>
 </html>
