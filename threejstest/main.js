@@ -13,8 +13,54 @@ function Hut () {
     hut.add(box)
 
     const roofplater = new THREE.Mesh(
-        new THREE.BoxGeometry
+        new THREE.BoxGeometry(25, 2, 19),
+        new THREE.MeshBasicMaterial({ color: '#542222', side: THREE.DoubleSide})
     )
+    roofplater.rotateX(0.78539816339)
+    roofplater.position.y = 11
+    roofplater.position.z = 6
+    hut.add(roofplater)
+
+    const roofplatel = new THREE.Mesh(
+        new THREE.BoxGeometry(25, 2, 19),
+        new THREE.MeshBasicMaterial({ color: '#542222', side: THREE.DoubleSide})
+    )
+    roofplatel.rotateX(-0.78539816339)
+    roofplatel.position.y = 11
+    roofplatel.position.z = -6
+    hut.add(roofplatel)
+
+    const rooffill1 = new THREE.Mesh(
+        new THREE.BoxGeometry(20, 2, 16),
+        new THREE.MeshBasicMaterial({ color: '#D51414'})
+    )
+    rooffill1.position.y = 8
+
+    hut.add(rooffill1)
+
+    const rooffill2 = new THREE.Mesh(
+        new THREE.BoxGeometry(20, 2, 14),
+        new THREE.MeshBasicMaterial({ color: '#D51414'})
+    )
+    rooffill2.position.y = 10
+
+    hut.add(rooffill2)
+
+    const rooffill3 = new THREE.Mesh(
+        new THREE.BoxGeometry(20, 2, 10),
+        new THREE.MeshBasicMaterial({ color: '#D51414'})
+    )
+    rooffill3.position.y = 12
+
+    hut.add(rooffill3)
+
+    const rooffill4 = new THREE.Mesh(
+        new THREE.BoxGeometry(20, 3, 5),
+        new THREE.MeshBasicMaterial({ color: '#D51414'})
+    )
+    rooffill4.position.y = 14
+
+    hut.add(rooffill4)
     return hut;
 }
 
@@ -78,7 +124,7 @@ const camera = new THREE.PerspectiveCamera(45, window.innerWidth /
     window.innerHeight, 1, 1000)
 camera.position.x = -200
 camera.position.y = 30
-camera.position.z = -10
+camera.position.z = -15
 camera.lookAt('0, 0, 0')
 
 
