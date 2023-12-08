@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "https://unpkg.com/three@<version>/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@<version>/examples/jsm/"
+          }
+        }
+      </script>
+    <title>first three.js app</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Oswald&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="nav">
+    <div class="logo">
+      <h1>Glafyr's Forest</h1>
+    </div>
+    <div class="links">
+      <a href="#"><p>About Project</p></a>
+      <a href="#"><p>Link2</p></a>
+      <a href="#"><p>link3</p></a>
+    </div>
+  </div>
+  <div class="main">
+    <script type="module" class="3d" src="main.js"></script>
+    <div class="maincontent">
+      <button type="button" onclick="stopmove()"><p>Stop Rotation</p></button>
+    </div>
+  </div>
+</body>
+</html>
