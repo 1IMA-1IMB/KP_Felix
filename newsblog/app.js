@@ -1,16 +1,23 @@
 require('dotenv').config();
+const bodyParser = require('body-parser')
 
 const express = require('express');
 const expressLayout = require('express-ejs-layouts')
 
+const connectDB = require('./server/config/db')
+
 const app = express();
 const PORT = 5000 || process.env.PORT;
+
+connectDB();
 
 app.use(express.static('public'))
 
 app.use(expressLayout)
 app.set('layout', './layouts/main')
 app.set('view engine', 'ejs')
+app.use(bodyParser.json()) // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use('/', require('./server/routes/main'))
 
