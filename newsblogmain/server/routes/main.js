@@ -9,6 +9,23 @@ const jwtSecret = process.env.jwtSecret
 
 const layout2 = '../views/layouts/main'
 
+const authentication = (req, res, next) => {
+    const token = req.cookies.token;
+
+    if(!token) {
+        return
+    } else {
+          try {
+            const decoded = jwt.verify(token, jwtSecret)
+            req.userId = decoded.userId
+            next()
+          } catch (error){
+            res.status(401).json ({ message: 'Unauthorized'})
+          }
+    } 
+
+}
+
 router.get('', async (req, res) => {
 
     const locals = {
@@ -19,6 +36,20 @@ router.get('', async (req, res) => {
     try {
         const data = await Users.find()
         res.render('index', { locals, data });
+
+        const token = req.cookies.token;
+
+        if(!token) {
+            return
+        } else {
+              try {
+                const decoded = jwt.verify(token, jwtSecret)
+                req.userId = decoded.userId
+                next()
+              } catch (error){
+                res.status(401).json ({ message: 'Unauthorized'})
+              }
+        } 
     } catch(error) {
         console.log(error)
     }
