@@ -9,30 +9,12 @@ const jwtSecret = process.env.jwtSecret
 
 const layout2 = '../views/layouts/main'
 
-router.get('', async (req, res) => {
-
     const locals = {
         title: "NodeJS Blog",
         description: "Online News site created with nodeJS"
     }
 
     try {
-        const data = await Users.find()
-        res.render('index', { locals, data });
-    } catch(error) {
-        console.log(error)
-    }
-
-
-
-})
-
-
-
-
-
-router.get('/login', async (req, res) => {
-
     
     const locals = {
         title: "NodeJS Blog",
@@ -40,15 +22,12 @@ router.get('/login', async (req, res) => {
     }
 
 
-    res.render('login', { locals, layout: layout2 })
-})
-
-router.post('/login', async (req, res) => {
-
     try {
 
         const { username, password } = req.body
+        console.log(req.body)
 
+        res.redirect('/')
         const user = await Users.findOne({ username })
 
         if(!user) {
