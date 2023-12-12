@@ -3,6 +3,7 @@ const router = express.Router()
 const Users = require('../models/users')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const Comments = require('../models/comments')
 
 const jwtSecret = process.env.jwtSecret
 
@@ -134,13 +135,18 @@ router.post('/register', async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10)
 
         try {
-            const user1 = await Users.findOne({ username: username})
-
-            if (!user1){
-            const user = await Users.create({ username, password:hashedPassword})
-            res.status(201).json({ message: 'User Created', user})
+            if(username.length < 1 || password.length < 4) {
+                res.redirect('usernameinuse')
             } else {
-                res.status(401).json ({message: 'A user with this username already exists'})
+                
+                const user1 = await Users.findOne({ username: username})
+
+                if (!user1){
+                    const user = await Users.create({ username, password:hashedPassword})
+                    res.redirect('succesfull')
+                } else {
+                    res.redirect('usernameinuse')
+                }
             }
         } catch (error) {
             console.log(error)
@@ -158,6 +164,33 @@ router.get('/erroric', async (req, res) => {
     }
 
     res.render('erroric', { locals, layout2 })
+})
+
+router.get('/usernameinuse', async (req, res) => {
+    const locals = {
+        title: "NodeJS Blog",
+        description: "Online News site created with nodeJS"
+    }
+
+    res.render('ut', { locals, layout2 })
+})
+
+router.get('/succesfull', async (req, res) => {
+    const locals = {
+        title: "NodeJS Blog",
+        description: "Online News site created with nodeJS"
+    }
+
+    res.render('sc', { locals, layout2 })
+})
+
+router.get('/ccerror', async (req, res) => {
+    const locals = {
+        title: "NodeJS Blog",
+        description: "Online News site created with nodeJS"
+    }
+
+    res.render('cc', { locals, layout2 })
 })
 
 router.get('/logout', async (req, res) => {
@@ -189,6 +222,119 @@ router.post('/logout', async (req, res) => {
     }
 
 })
+
+router.get('/articles1', async (req, res) => {
+
+    try {
+        const data = await Comments.find({ article: 'article1'})
+
+        res.render('articles1', { data })
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+router.post('/articles1', async (req, res) =>  {
+    try {
+        const { comments } = req.body
+        const token = req.cookies.token
+
+        if (!token){
+            res.redirect('ccerror')
+        } else {
+            const decoded = jwt.verify(token, jwtSecret)
+
+            const users = await Users.findOne({ _id: decoded.userId})
+            
+            const username = users.username
+    
+            await Comments.create({ article: 'article1', user: username, message: comments})
+    
+            console.log('created to database')
+
+            res.redirect('articles1')
+        }
+
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+router.get('/articles2', async (req, res) => {
+
+    try {
+        const data = await Comments.find({ article: 'article2'})
+
+        res.render('articles2', { data })
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+router.post('/articles2', async (req, res) =>  {
+    try {
+        const { comments } = req.body
+        const token = req.cookies.token
+
+        if (!token){
+            res.redirect('ccerror')
+        } else {
+            const decoded = jwt.verify(token, jwtSecret)
+
+            const users = await Users.findOne({ _id: decoded.userId})
+            
+            const username = users.username
+    
+            await Comments.create({ article: 'article2', user: username, message: comments})
+    
+            console.log('created to database')
+
+            res.redirect('articles2')
+        }
+
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+
+router.get('/articles3', async (req, res) => {
+
+    try {
+        const data = await Comments.find({ article: 'article3'})
+
+        res.render('articles3', { data })
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+router.post('/articles3', async (req, res) =>  {
+    try {
+        const { comments } = req.body
+        const token = req.cookies.token
+
+        if (!token){
+            res.redirect('ccerror')
+        } else {
+            const decoded = jwt.verify(token, jwtSecret)
+
+            const users = await Users.findOne({ _id: decoded.userId})
+            
+            const username = users.username
+    
+            await Comments.create({ article: 'article3', user: username, message: comments})
+    
+            console.log('created to database')
+
+            res.redirect('articles3')
+        }
+
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 
 
 
