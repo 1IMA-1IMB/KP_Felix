@@ -11,7 +11,6 @@ const session = require('express-session');
 
 const app = express();
 const PORT = 5000 || process.env.PORT;
-
 connectDB();
 
 app.use(bodyParser.json()) // for parsing application/json
@@ -26,7 +25,12 @@ app.use(session({
     })
 }))
 
-app.use(express.static('public'))
+// app.use(express.static('public'))
+
+app.use('*/css',express.static('public/css'));
+app.use('*/js',express.static('public/js'));
+app.use('*/images',express.static('public/images'));
+
 
 app.use(expressLayout)
 app.set('layout', './layouts/main')

@@ -42,10 +42,12 @@ html {
     text-decoration-thickness: 3px;
 }
 .main {
-    height: 100vh;
+    height: 300vh;
+    width: 100%;
 }
 .footer {
     background-color: black;
     color: white;
     height: 100px;
+    width: 100%;
 }
