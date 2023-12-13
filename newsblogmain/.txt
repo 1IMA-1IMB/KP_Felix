@@ -1,3 +1,5 @@
 TUTORIALS: 
 
-https://www.youtube.com/watch?v=uCQirwe5UVg&list=PL4cUxeGkcC9hAJ-ARcYq_z6lDZV7kT1xD&index=9 15:28
+brukte denne serien for oppsett å for å lære ejs:
+
+https://www.youtube.com/watch?v=-foo92lFIto&list=PL4cUxeGkcC9hAJ-ARcYq_z6lDZV7kT1xD

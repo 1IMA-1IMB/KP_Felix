@@ -103,7 +103,6 @@ router.post('/login', async (req, res) => {
         }
 
         const token = jwt.sign({ userId: user._id}, jwtSecret)
-        console.log(token)
         res.cookie('token', token, {httpOnly: true})
 
         res.render('index')
