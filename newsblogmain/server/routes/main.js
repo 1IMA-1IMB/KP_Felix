@@ -76,7 +76,16 @@ router.get('/login', async (req, res) => {
         if(!token){
             res.render('login', { locals, layout: layout2 })
         } else {
-            res.redirect('/logout')
+            const decoded = jwt.verify(token, jwtSecret)
+
+            const user = await Users.findOne({ _id: decoded.userId})
+
+            if(!user) {
+                res.clearCookie('token')
+                res.render('login', { locals, layout: layout2})
+            } else {
+                res.redirect('/logout')
+            }
         }
     } catch (error) {
         
