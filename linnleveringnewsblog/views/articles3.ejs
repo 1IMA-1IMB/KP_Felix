@@ -1,0 +1,55 @@
+<div class="articles3__container">
+    <div class="articles3__main">
+        <div class="articles3__top">
+            <h1 class="articles__heading"><span>Siste:</span>Flere melder å ha sett nissens reinsdyr</h1>
+            <img src="../public/images/reinsdyr.jpg" alt="">
+        </div>
+        <div class="articles3__bottom">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis officiis itaque quia corrupti? Sunt quo repudiandae labore reprehenderit cumque. Quod optio explicabo repellat quaerat architecto aliquid maiores facere asperiores quibusdam.
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni ut voluptatibus repudiandae assumenda. Quam non, beatae illum iure corrupti repudiandae repellat eius animi nostrum atque, ea sunt voluptate tenetur sequi.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam sequi magnam atque nisi esse? Sit reprehenderit voluptas doloribus consectetur blanditiis, sint quia delectus iste ea odio consequatur velit cumque eligendi?
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti laborum necessitatibus facilis beatae reprehenderit, facere quas vero pariatur nostrum fuga delectus saepe accusantium esse in eius aliquam tenetur magni praesentium!
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, nam pariatur! Non quaerat dolorum, fugiat nam ducimus ipsum modi cumque reiciendis id nulla, debitis voluptatibus distinctio autem illum nihil aliquam.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. A architecto odio rem ratione officia animi, expedita vitae. Laboriosam, totam fugiat repudiandae molestias amet consectetur, dolores nisi perferendis provident magni libero?
+            </p>
+            <br>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis officiis itaque quia corrupti? Sunt quo repudiandae labore reprehenderit cumque. Quod optio explicabo repellat quaerat architecto aliquid maiores facere asperiores quibusdam.
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni ut voluptatibus repudiandae assumenda. Quam non, beatae illum iure corrupti repudiandae repellat eius animi nostrum atque, ea sunt voluptate tenetur sequi.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam sequi magnam atque nisi esse? Sit reprehenderit voluptas doloribus consectetur blanditiis, sint quia delectus iste ea odio consequatur velit cumque eligendi?
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti laborum necessitatibus facilis beatae reprehenderit, facere quas vero pariatur nostrum fuga delectus saepe accusantium esse in eius aliquam tenetur magni praesentium!
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, nam pariatur! Non quaerat dolorum, fugiat nam ducimus ipsum modi cumque reiciendis id nulla, debitis voluptatibus distinctio autem illum nihil aliquam.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. A architecto odio rem ratione officia animi, expedita vitae. Laboriosam, totam fugiat repudiandae molestias amet consectetur, dolores nisi perferendis provident magni libero?
+            </p>
+            <br>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis officiis itaque quia corrupti? Sunt quo repudiandae labore reprehenderit cumque. Quod optio explicabo repellat quaerat architecto aliquid maiores facere asperiores quibusdam.
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni ut voluptatibus repudiandae assumenda. Quam non, beatae illum iure corrupti repudiandae repellat eius animi nostrum atque, ea sunt voluptate tenetur sequi.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam sequi magnam atque nisi esse? Sit reprehenderit voluptas doloribus consectetur blanditiis, sint quia delectus iste ea odio consequatur velit cumque eligendi?
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti laborum necessitatibus facilis beatae reprehenderit, facere quas vero pariatur nostrum fuga delectus saepe accusantium esse in eius aliquam tenetur magni praesentium!
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, nam pariatur! Non quaerat dolorum, fugiat nam ducimus ipsum modi cumque reiciendis id nulla, debitis voluptatibus distinctio autem illum nihil aliquam.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. A architecto odio rem ratione officia animi, expedita vitae. Laboriosam, totam fugiat repudiandae molestias amet consectetur, dolores nisi perferendis provident magni libero?
+            </p>
+            <br>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis officiis itaque quia corrupti? Sunt quo repudiandae labore reprehenderit cumque. Quod optio explicabo repellat quaerat architecto aliquid maiores facere asperiores quibusdam.
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni ut voluptatibus repudiandae assumenda. Quam non, beatae illum iure corrupti repudiandae repellat eius animi nostrum atque, ea sunt voluptate tenetur sequi.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam sequi magnam atque nisi esse? Sit reprehenderit voluptas doloribus consectetur blanditiis, sint quia delectus iste ea odio consequatur velit cumque eligendi?
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti laborum necessitatibus facilis beatae reprehenderit, facere quas vero pariatur nostrum fuga delectus saepe accusantium esse in eius aliquam tenetur magni praesentium!
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, nam pariatur! Non quaerat dolorum, fugiat nam ducimus ipsum modi cumque reiciendis id nulla, debitis voluptatibus distinctio autem illum nihil aliquam.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. A architecto odio rem ratione officia animi, expedita vitae. Laboriosam, totam fugiat repudiandae molestias amet consectetur, dolores nisi perferendis provident magni libero?
+            </p>
+        </div>
+        <br>
+        <div class="articles3__comments">
+            <form action="/articles3" method="POST">
+                <label for="comments">Comment here:</label>
+                <input type="text" placeholder="Comment here" name="comments" class="articles3__input">
+                <input type="submit" value="Comment" class="articles3__button">
+            </form>
+            <% data.forEach(element => { %>
+                <div class="article3__comment">
+                    <h1><%= element.user %></h1>
+                    <p> <%= element.message %></p>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+    </div>
