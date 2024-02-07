@@ -21,29 +21,38 @@ function something() {
     document.getElementById('result').innerHTML = `${convertert}`
 }
 
+const checkpali = (x) => {
+    return x = x.split('').reverse().join('')
+}
+
 function checkpalindrom() {
     const tall2 = document.getElementById('number1').value
 
-    const listeReversed = tall2.split('').reverse()
+    const konvertert = checkpali(tall2)
 
-    const tall_liste2 = tall2.split('')
+    if(tall2 == konvertert) return document.getElementById('presultat').innerHTML = `This is a palindrome`
+    if(tall2 !== konvertert) return document.getElementById('presultat').innerHTML = `This is not a palindrome`
+
+    // const listeReversed = tall2.split('').reverse()
+
+    // const tall_liste2 = tall2.split('')
 
 
-    const checkArray = []
+    // const checkArray = []
 
-    console.log(listeReversed)
-    console.log(tall_liste2)
+    // console.log(listeReversed)
+    // console.log(tall_liste2)
 
-    for(let i = 0; i < tall_liste2.length; i++) {
+    // for(let i = 0; i < tall_liste2.length; i++) {
 
-        if(listeReversed[i] == tall_liste2[i]){
-            checkArray.push(listeReversed[i])
-        }
-    }   
+    //     if(listeReversed[i] == tall_liste2[i]){
+    //         checkArray.push(listeReversed[i])
+    //     }
+    // }   
 
-    if (checkArray.length == tall_liste2.length) {
-        document.getElementById('presultat').innerHTML = `This is a palindrome`
-    } else {
-        document.getElementById('presultat').innerHTML = `This is not a palindrome`
-    }
+    // if (checkArray.length == tall_liste2.length) {
+    //     document.getElementById('presultat').innerHTML = `This is a palindrome`
+    // } else {
+    //     document.getElementById('presultat').innerHTML = `This is not a palindrome`
+    // }
 }
