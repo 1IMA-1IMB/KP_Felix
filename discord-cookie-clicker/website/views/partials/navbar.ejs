@@ -1,0 +1,14 @@
+<div class="n">
+    <h1>Some Logo</h1>
+    <div class="n-content">
+        <a href="#">Link</a>
+        <a href="#">Link</a>
+        <% if (!user) { %>
+            <p>Not logged in!</p>
+            <img src="https://icons.veryicon.com/png/o/application/spanner-app/not-logged-in.png" alt="https://icons.veryicon.com/png/o/application/spanner-app/not-logged-in.png">
+        <% } else if (user){ %> 
+            <p>Logged in as <%= user.userName %></p>
+            <img src="<%= user.avatarURL %>" alt="">
+        <% } %>
+    </div>
+</div> 
