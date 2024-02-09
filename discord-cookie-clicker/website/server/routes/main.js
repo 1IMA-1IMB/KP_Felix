@@ -55,9 +55,7 @@ router.get('/redirect', async  (req, res) => {
                 code: code,
                 redirect_uri: 'http://localhost:5000/redirect/'
              })
-    
-    
-        
+             
             const output = await axios.post('https://discord.com/api/oauth2/token', postData, {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
