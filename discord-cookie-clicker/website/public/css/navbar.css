@@ -1,0 +1,143 @@
+.n {
+    width: 100%;
+    height: 80px;
+    background-color: rgb(50, 49, 79);
+    display: flex;
+}
+
+.logo {
+    margin-left: 20px;
+    text-decoration: none;
+    color: rgb(66, 225, 66);
+    width: 20%;
+    margin-top: 20px;
+    font-family: 'Black Ops One';
+}
+
+.n-content {
+    width: 100%;    
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    justify-content: end;
+    gap: 30px;
+}
+
+.container {
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  .bar1, .bar2, .bar3 {
+    width: 35px;
+    height: 5px;
+    background-color: rgb(255, 255, 255);
+    margin: 6px 0;
+    transition: 0.4s;
+  }
+  
+  /* Rotate first bar */
+  .change .bar1 {
+    transform: translate(0, 11px) rotate(-45deg);
+  }
+  
+  /* Fade out the second bar */
+  .change .bar2 {opacity: 0;}
+  
+  /* Rotate last bar */
+  .change .bar3 {
+    transform: translate(0, -11px) rotate(45deg);
+  }
+
+  
+
+
+
+.n-content img {
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+    border: 0px solid black;
+    margin-right: 20px;
+    margin-left: 5px;
+}
+
+.n-content:hover {
+    cursor: pointer;
+}
+
+.navlinksmenu {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 85px;
+    background-color: rgb(67, 65, 65);
+    right: 120px;
+    width: 120px;
+    height: 200px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.navlinksmenu a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-family: sans-serif;
+}
+
+.navlinksmenu a:hover {
+    text-decoration: underline;
+    text-underline-offset: 7px;
+    text-decoration-thickness: 2px;
+}
+
+.usermenu {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 85px;
+    background-color: rgb(67, 65, 65);
+    right: 0px;
+    width: 120px;
+    height: 200px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.usermenu a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-family: sans-serif;
+}
+
+.usermenu a:hover {
+    text-decoration: underline;
+    text-underline-offset: 7px;
+    text-decoration-thickness: 2px;
+}
+
+
+.usermenu p {
+    color: white;
+    font-size: 20px;
+    font-family: sans-serif;
+}
+
+
+.hidden {
+    display: none;
+}
+
+.hidden2 {
+    display: none;
+}

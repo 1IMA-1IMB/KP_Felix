@@ -1,14 +1,33 @@
+<link rel="stylesheet" href="/static/css/navbar.css">
+<script src="/static/js/navbar.js"></script>
+
 <div class="n">
-    <h1>Some Logo</h1>
+    <a href="/" class="logo"><h1>GB</h1></a>
+
     <div class="n-content">
+    <div class="container" onclick="myFunction(this)">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </div>
+    <div class="navlinksmenu hidden" id="navlinksmenu">
         <a href="#">Link</a>
         <a href="#">Link</a>
-        <% if (!user) { %>
+    </div>
+    <% if (!user) { %>
+        <img src="https://icons.veryicon.com/png/o/application/spanner-app/not-logged-in.png" alt="https://icons.veryicon.com/png/o/application/spanner-app/not-logged-in.png">
+        <div class="usermenu hidden2">
             <p>Not logged in!</p>
-            <img src="https://icons.veryicon.com/png/o/application/spanner-app/not-logged-in.png" alt="https://icons.veryicon.com/png/o/application/spanner-app/not-logged-in.png">
-        <% } else if (user){ %> 
-            <p>Logged in as <%= user.userName %></p>
-            <img src="<%= user.avatarURL %>" alt="">
-        <% } %>
+        </div>
+    <% } else if (user){ %> 
+        <img src="<%= user.avatarURL %>" alt="" onclick="usermenu()">
+        <div class="usermenu hidden2" id="usermenu">
+            <p>Logged in as <%= user.userName %></p>    
+            <a href="#">User info</a>
+            <a href="#">Your Servers</a>
+            <a href="#">Logout</a>
+        </div>
+    <% } %>
+    </div>
     </div>
 </div> 

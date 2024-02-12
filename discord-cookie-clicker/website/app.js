@@ -97,9 +97,7 @@ app.use(session({
     })
 }))
 
-app.use('*css', express.static('./public/css'))
-app.use('*js', express.static('./public/js'))
-app.use('*images', express.static('./public/images'))
+app.use('/static', express.static(path.join(__dirname, 'public')))
 
 app.use(expressLayout)
 app.set('layout', './layouts/main')
