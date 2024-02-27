@@ -2,7 +2,7 @@ import React from "react";
 
 interface Props {
   children: string;
-  onClick: () => void;
+  onClick?: () => void;
   color?: "primary" | "secondary" | "danger";
 }
 
