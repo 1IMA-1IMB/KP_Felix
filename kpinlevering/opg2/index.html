@@ -3,31 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
     <script src="script.js"></script>
     <title>Document</title>
 </head>
 <body>
-    <p id="result">Kalkulert Result</p>
-    <p id="presultat">Palindrome Result</p>
-    <input type="number" id="number1" placeholder="Tall som skal konverteres">
-    <label for="cfrom">Convert From</label>
-    <select name="cfrom" id="cfrom">
-        <option value="3.78541">Gallons</option>
-        <option value="0.0295735">Ounces</option>
-        <option value="0.236588">Cups</option>
-        <option value="0.0147868">Spise Skjeer</option>
-        <option value="1">Liter</option>
-    </select>
-
-    <label for="cto">to</label>
-    <select name="cfrom" id="cto">
-        <option value="3.78541">Gallons</option>
-        <option value="0.0295735">Ounces</option>
-        <option value="0.236588">Cups</option>
-        <option value="0.0147868">Spise Skjeer</option>
-        <option value="1">Liter</option>
-    </select>
-    <input type="submit" onclick="something()">
-    <input type="submit" onclick="checkpalindrom()" value="check palindrome">
+    <div class="main-content">
+        <div class="card">
+            <h1>Measurement Units</h1>
+            <p id="result">Result</p>
+            <p id="presultat">Palindrome = False</p>
+            <input type="number" id="number1" placeholder="Number to be converted" onchange="something()">
+            <label for="cfrom">Convert From</label>
+            <select name="cfrom" id="cfrom">
+                <option value="3.78541">Gallons</option>
+                <option value="0.0295735">Ounces</option>
+                <option value="0.236588">Cups</option>
+                <option value="0.0147868">Spise Skjeer</option>
+                <option value="1">Liter</option>
+            </select>
+    
+        <label for="cto">to</label>
+        <select name="cfrom" id="cto">
+            <option value="3.78541">Gallons</option>
+            <option value="0.0295735">Ounces</option>
+            <option value="0.236588">Cups</option>
+            <option value="0.0147868">Spise Skjeer</option>
+            <option value="1">Liter</option>
+        </select>
+        <!-- <input type="submit" onclick="something()"> -->
+        <input type="submit" onclick="checkpalindrom()" value="check palindrome">
+        </div>
+    </div>
 </body>
 </html>

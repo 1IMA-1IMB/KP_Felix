@@ -1,0 +1,76 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.main-content {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to bottom right, rgb(72, 91, 215), rgb(236, 20, 132));
+}
+
+.card {
+    width: auto;
+    height: 80%;
+    background-color: rgba(193, 193, 193, 0.53);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    border-radius: 20px;
+}
+
+.card h1 {
+    padding: 20px;
+    color: white;
+}
+
+.card p {
+    color: white;
+}
+
+.card input[type=number] {
+    margin-top: 20px;
+    width: 80%;
+    height: auto;
+    padding: 15px;
+    border-radius: 5px;
+    border: 0px;
+    
+}
+
+.card label {
+    color: white;
+}
+
+.card select {
+    width: 90%;
+    padding: 15px;
+    border-radius: 5px;
+    border: 0px;
+}
+
+.card input[type=submit] {
+    margin-top: 15px;
+    width: 90%;
+    height: auto;
+    padding: 15px;
+    border-radius: 10px;
+    border: 0px;   
+    color: white;
+    background-color: rgba(193, 193, 193, 0.671);
+    transition: all 0.5s ease-out;
+}
+
+.card input[type=submit]:hover {
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    font-size: 15px;
+}

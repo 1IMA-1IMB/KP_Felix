@@ -18,7 +18,7 @@ function something() {
 
     const convertert = calculator(tall1.value, convertFrom.value, convertTo.value).toFixed(3)
 
-    document.getElementById('result').innerHTML = `${convertert}`
+    document.getElementById('result').innerHTML = `Result: ${convertert}`
 }
 
 const checkpali = (x) => {
@@ -30,8 +30,8 @@ function checkpalindrom() {
 
     const konvertert = checkpali(tall2)
 
-    if(tall2 == konvertert) return document.getElementById('presultat').innerHTML = `This is a palindrome`
-    if(tall2 !== konvertert) return document.getElementById('presultat').innerHTML = `This is not a palindrome`
+    if(tall2 == konvertert) return document.getElementById('presultat').innerHTML = `Palindrome = True`
+    if(tall2 !== konvertert) return document.getElementById('presultat').innerHTML = `Palindrome = False`
 
     // const listeReversed = tall2.split('').reverse()
 
