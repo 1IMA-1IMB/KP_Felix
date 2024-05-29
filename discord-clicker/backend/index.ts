@@ -7,8 +7,8 @@ import { Client, Events, GatewayIntentBits, Collection } from 'discord.js'
 import fs from 'node:fs'
 import path from 'node:path'
 import * as registerRoute from './routes/register'
-import * as Users from './models/Users'
-
+import * as users from './routes/users'
+import * as guilds from './routes/guilds'
 dotenv.config()
 
 
@@ -89,6 +89,25 @@ app.get('/', (req: Request, res: Response) => {
 })	
 
 app.use('/register', registerRoute.default)
+app.use('/users', users.default)
+app.use('/guilds', guilds.default)
+
+app.get('/botservers', async (req: Request, res: Response) =>{
+
+	const guildId = '976479259768004608'
+
+	const guilds = await client.guilds.fetch()
+
+	const inGuild = guilds.filter((guild: any) => {
+		return guild.id === guildId 
+	})
+
+	if(inGuild.size === 0) return res.status(404).send('Not in guild')
+
+	res.json({ message: 'Bot in guild'})
+
+	
+})
 
 mongoose
     .connect(process.env.MONGOURL as string)

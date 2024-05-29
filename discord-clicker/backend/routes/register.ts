@@ -49,40 +49,69 @@ router.post("/", async (req: Request, res: Response) => {
             }
         })
 
-        console.log(output.data, userinfo.data)
+        // console.log(output.data, userinfo.data)
 
         if(userinfo.data){
             const user: any = await Users.findOne({ id: userinfo.data.id })
 
             if(!user) {
-                Users.create({
+
+                console.log('Here')
+
+                await Users.create({
                     id: userinfo.data.id,
                     username: userinfo.data.username,
-                    refresh_token: output.data.refresh_token
+                    refresh_token: output.data.refresh_token,
+                    token: access,
+                    avatar: userinfo.data.avatar
                 })
 
-                const token = jwt.sign({ refreshToken: output.data.refresh_token}, jwtSecret)
+                const token = jwt.sign({ token: access }, jwtSecret)
 
-
-                res.json({ token: token})
+                return res.json({token: token })
 
 
             } else {
 
-                const oldtoken = user.refresh_token
+
+                const refreshToken = user.refresh_token
+
+                const formData1 = new URLSearchParams({
+                    client_id: clientId,
+                    client_secret: clientSecret,
+                    grant_type: 'refresh_token',
+                    refresh_token: refreshToken
+                })
+
+
+                const refresh = await axios.post('https://discord.com/api/oauth2/token',
+                    formData1, {
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        }
+                    }
+                )
+
+                // console.log(refresh.data)
+
+                const oldtoken = user.token
 
                 
 
                 user.old_tokens.push(oldtoken)
 
-                user.refresh_token = output.data.refresh_token
+                user.token = refresh.data.access_token
+
+                user.avatar = userinfo.data.avatar
+
+                user.refresh_token = refresh.data.refresh_token
 
                 await user.save()
 
-                const token = jwt.sign({ refreshToken: output.data.refresh_token}, jwtSecret)
+                const token = jwt.sign({ token: refresh.data.access_token}, jwtSecret)
 
 
-                res.json({ token: token})
+                return res.json({ token: token})
             }
         }
     }
