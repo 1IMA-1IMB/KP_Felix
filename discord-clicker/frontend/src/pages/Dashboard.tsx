@@ -3,6 +3,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import Navbar from "../compontents/Navbar";
 import { useNavigate } from "react-router-dom";
+import { motion, animate, stagger } from "framer-motion";
 
 const Dashboard: React.FC = (): JSX.Element => {
   const navigate = useNavigate();
@@ -57,9 +58,19 @@ const Dashboard: React.FC = (): JSX.Element => {
         <h1 className="text-4xl mt-10 font-bold italic text-white">
           Dashboard
         </h1>
-        <div className="w-10/12 grid grid-cols-3 gap-20 mt-20 ">
+        <motion.div
+        className="w-10/12 grid grid-cols-3 gap-20 mt-20 ">
           {guilds.map((data: any, index: number) => (
-            <div
+            <motion.div
+            variants={{
+              hidden: { opacity: 0, top: -50 },
+              visible: { opacity: 1, top: 0 },
+            }}
+            initial="hidden"
+            animate="visible"
+            transition={{ duration: 0.5, ease: "easeInOut", delay: index * 0.1  }}
+          
+
               key={index}
               className=" bg-[#142D46] h-80 flex flex-col items-center justify-center rounded-xl text-center"
             >
@@ -76,13 +87,13 @@ const Dashboard: React.FC = (): JSX.Element => {
               <h1 className="text-white font-bold mt-5">{data.name}</h1>
               <a
                 className="button bg-blue-500 w-9/12 h-12 text-white flex items-center justify-center mt-10 rounded-lg transition-all bottom-0 duration-200 hover:bg-blue-600 relative hover:bottom-2"
-                href={`https://discord.com/oauth2/authorize?client_id=1243668312597074021&permissions=8&redirect_uri=http%3A%2F%2Flocalhost%3A5173%2Fdiscord%2Foauth%2Fauthenticate%2F&scope=bot&guild_id=${data.id}`}
+                href={`/setup/guild/${data.id}`}
               >
-                <button className="">Setup</button>
+                <button className="">Edit Game</button>
               </a>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   );

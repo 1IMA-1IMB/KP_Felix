@@ -1,12 +1,12 @@
 import express, { Router, Request, Response} from 'express'
 import axios from 'axios'
-import Users from '../models/Users'
+// import Users from '../models/Users'
 import jwt from 'jsonwebtoken'
 
 
-const clientId: string = process.env.clientId as string
+// const clientId: string = process.env.clientId as string
 
-const clientSecret: string = process.env.clientSecret as string
+// const clientSecret: string = process.env.clientSecret as string
 
 const jwtSecret: string = process.env.jwtSecret as string
 
@@ -37,8 +37,6 @@ router.post('/owned', async (req: Request, res: Response) => {
         if(guildsinfo.data) {
         
             const ownedGuilds = guildsinfo.data.filter((guild: any) => guild.owner === true)
-
-            console.log(ownedGuilds)
     
             res.json({ message: 'Guilds found.', guilds: ownedGuilds })
         } else {

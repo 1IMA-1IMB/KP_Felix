@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <Route path="/discord/oauth/authenticate/" element={<Autht />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/setup/guild">
-        <Route path=":id" element={<Setup />} />
+        <Route path=":guildId" element={<Setup />} />
       </Route>
     </Routes>
   </BrowserRouter>

@@ -92,9 +92,13 @@ app.use('/register', registerRoute.default)
 app.use('/users', users.default)
 app.use('/guilds', guilds.default)
 
-app.get('/botservers', async (req: Request, res: Response) =>{
+app.post('/botservers', async (req: Request, res: Response) =>{
 
-	const guildId = '976479259768004608'
+	try {
+
+	const guildId = req.body.guildId
+
+	console.log(guildId)
 
 	const guilds = await client.guilds.fetch()
 
@@ -102,9 +106,15 @@ app.get('/botservers', async (req: Request, res: Response) =>{
 		return guild.id === guildId 
 	})
 
+	console.log(inGuild.size)
+
 	if(inGuild.size === 0) return res.status(404).send('Not in guild')
 
-	res.json({ message: 'Bot in guild'})
+	res.json({ message: 'Bot in guild', code: 200})
+
+	} catch (error: Error | unknown) {
+		console.log(error)
+	}
 
 	
 })
