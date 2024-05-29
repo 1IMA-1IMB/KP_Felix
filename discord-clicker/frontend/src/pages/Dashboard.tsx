@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 import Navbar from "../compontents/Navbar";
 import { useNavigate } from "react-router-dom";
 
-const Dashboard = () => {
+const Dashboard: React.FC = (): JSX.Element => {
   const navigate = useNavigate();
 
   const [guilds, setGuilds] = useState([]);

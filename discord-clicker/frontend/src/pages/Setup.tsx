@@ -1,6 +1,6 @@
 import React from "react";
 
-const Setup = () => {
+const Setup: React.FC = (): JSX.Element => {
   return <div>Setup</div>;
 };
 
