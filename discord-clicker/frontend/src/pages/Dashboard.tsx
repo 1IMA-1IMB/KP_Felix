@@ -63,8 +63,8 @@ const Dashboard: React.FC = (): JSX.Element => {
           {guilds.map((data: any, index: number) => (
             <motion.div
             variants={{
-              hidden: { opacity: 0, top: -50 },
-              visible: { opacity: 1, top: 0 },
+              hidden: { opacity: 0, y: -100 },
+              visible: { opacity: 1, y: 0 },
             }}
             initial="hidden"
             animate="visible"
