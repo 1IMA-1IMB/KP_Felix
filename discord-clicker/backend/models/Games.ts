@@ -5,6 +5,7 @@ const gameSchema = new Schema({
     currency: String,
     emoji: String,
     name: String,
+    color: String,
 })
 
 export default model('Games', gameSchema)

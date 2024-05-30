@@ -8,6 +8,9 @@ export default {
     extend: {
       colors: {
         backgroundcolor: "#0A131C"
+      },
+      fontFamily: {
+        'pixeltext': ['Silkscreen', 'monospace']
       }
     },
   },

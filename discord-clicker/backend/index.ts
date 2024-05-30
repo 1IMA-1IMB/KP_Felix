@@ -170,7 +170,7 @@ app.post('/game', async (req: Request, res: Response) => {
 				if(!game) {
 					res.json({ message: 'Game not set up', code: 202, guild: ownedGuild})
 				} else {
-					res.json({ message: 'Bot in owned guild', code: 200, guild: ownedGuild})
+					res.json({ message: 'Bot in owned guild', code: 200, guild: ownedGuild, game: game})
 				}
 			}
 		}
@@ -180,6 +180,62 @@ app.post('/game', async (req: Request, res: Response) => {
 
 
 	} catch (error: Error | unknown) {
+		console.log(error)
+	}
+})
+
+
+app.post('/creategame', async (req: Request, res: Response) => {
+	try {
+	 	const { token, gameData, guildId } = req.body
+		
+		if (!token) return res.status(500).json({ message: 'Missing token'});
+
+		if(!gameData) return res.status(500).json({ message: 'Missing game data'});
+
+		const access: any = jwt.verify(token, process.env.jwtSecret as string)
+
+		const clientGuilds = await client.guilds.fetch()
+
+		const inGuild = clientGuilds.filter((guild: any) => {
+			return guild.id === guildId
+		})
+
+		if(!inGuild) return res.status(404).send('Not in guild')
+
+		const guilds = await axios.get('https://discord.com/api/users/@me/guilds', {
+			headers: {
+				Authorization: `Bearer ${access.token}`
+			}
+		})
+
+		if(guilds.data) {
+
+			const ownedGuild = await guilds.data.filter((guild: any) => guild.owner === true && guild.id === guildId)
+
+			if(!ownedGuild) return res.status(404).send('Not in owned guild')
+
+			const game = await Games.findOne({ guildId: guildId})
+
+			if(!game) {
+
+				await Games.create({
+					guildId: guildId,
+					currency: gameData.currencyName,
+					emoji: gameData.gameEmoji,
+					color: gameData.gameColor,
+					name: gameData.gameName
+				})
+
+				res.json({ message: 'Created game!', code: 200 })
+			} else {
+
+				res.json({ message: 'Game already set up', code: 202 })
+			}
+
+		}
+
+	} catch (error: Error | any) {
 		console.log(error)
 	}
 })
