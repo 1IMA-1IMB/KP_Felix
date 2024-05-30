@@ -9,6 +9,8 @@ import path from 'node:path'
 import * as registerRoute from './routes/register'
 import * as users from './routes/users'
 import * as guilds from './routes/guilds'
+import jwt from 'jsonwebtoken'
+import Games from './models/Games'
 dotenv.config()
 
 
@@ -117,6 +119,69 @@ app.post('/botservers', async (req: Request, res: Response) =>{
 	}
 
 	
+})
+
+app.post('/game', async (req: Request, res: Response) => {
+
+	try { 
+
+		const guildId = req.body.guildId
+		const token = req.body.token
+
+
+
+		if(!token) return res.status(500).send('Missing token')
+
+		const access: any = await jwt.verify(token, process.env.jwtSecret as string)
+
+		if(!guildId) return res.status(500).send('Missing guuild ID')
+	
+
+		const clientGuilds = await client.guilds.fetch()
+
+		const inGuild = clientGuilds.filter((guild: any) => {
+			return guild.id === guildId
+		})
+
+		
+
+		if(await inGuild.size === 0) return res.status(404).send('Not in guild')
+
+		const guilds = await axios.get('https://discord.com/api/users/@me/guilds', {
+			headers: {
+				Authorization: `Bearer ${access.token}`
+			}
+		})
+
+		if(guilds.data) {
+
+			
+
+			const ownedGuild = await guilds.data.filter((guild: any) => guild.owner === true && guild.id === guildId)
+
+
+			if(!ownedGuild) {
+				return res.status(404).send('Not in owned guild')
+			} else {
+
+
+				const game = await Games.findOne({ guildId: guildId})
+
+				if(!game) {
+					res.json({ message: 'Game not set up', code: 202, guild: ownedGuild})
+				} else {
+					res.json({ message: 'Bot in owned guild', code: 200, guild: ownedGuild})
+				}
+			}
+		}
+
+		
+
+
+
+	} catch (error: Error | unknown) {
+		console.log(error)
+	}
 })
 
 mongoose

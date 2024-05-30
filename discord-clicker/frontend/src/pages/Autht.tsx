@@ -32,7 +32,7 @@ const Autht: React.FC = (): JSX.Element => {
         if (!res.data.token) {
           navigate("/");
         } else {
-          Cookies.set("token", res.data.token, { expires: 5 });
+          Cookies.set("token", res.data.token);
 
           navigate("/");
         }
