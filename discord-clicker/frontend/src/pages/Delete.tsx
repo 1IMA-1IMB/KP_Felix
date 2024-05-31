@@ -6,7 +6,7 @@ import Navbar from "../compontents/Navbar";
 import Spinner from "../compontents/Spinner";
 import { FaTrash, FaArrowLeft } from "react-icons/fa";
 
-const Delete = () => {
+const Delete: React.FC = (): JSX.Element => {
   const { guildId } = useParams();
 
   const navigate = useNavigate();
