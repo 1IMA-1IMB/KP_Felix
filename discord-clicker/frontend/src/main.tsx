@@ -6,6 +6,8 @@ import Autht from "./pages/Autht";
 import Dashboard from "./pages/Dashboard";
 import Setup from "./pages/Setup";
 import Game from "./pages/Game";
+import Delete from "./pages/Delete";
+import Playgame from "./pages/Playgame";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
@@ -18,6 +20,12 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       </Route>
       <Route path="/game/guild">
         <Route path=":guildId" element={<Game />} />
+      </Route>
+      <Route path="/game/delete">
+        <Route path=":guildId" element={<Delete />} />
+      </Route>
+      <Route path="/play">
+        <Route path=":guildId" element={<Playgame />} />
       </Route>
     </Routes>
   </BrowserRouter>

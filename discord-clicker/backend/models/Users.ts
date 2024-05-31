@@ -7,12 +7,6 @@ const userSchema = new Schema({
     avatar: String,
     refresh_token: String,
     old_tokens: Array,
-    gameSaves: [
-        {
-            guildId: String,
-            money: Number,
-        }
-    ]
 })
 
 export default model('Users', userSchema)

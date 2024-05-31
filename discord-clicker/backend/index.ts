@@ -3,7 +3,7 @@ import cors from 'cors'
 import axios from 'axios'
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
-import { Client, Events, GatewayIntentBits, Collection } from 'discord.js'
+import { Client, Events, GatewayIntentBits, Collection, User } from 'discord.js'
 import fs from 'node:fs'
 import path from 'node:path'
 import * as registerRoute from './routes/register'
@@ -11,6 +11,8 @@ import * as users from './routes/users'
 import * as guilds from './routes/guilds'
 import jwt from 'jsonwebtoken'
 import Games from './models/Games'
+import Users from './models/Users'
+import Gamesaves from './models/Gamesves'
 dotenv.config()
 
 
@@ -236,6 +238,114 @@ app.post('/creategame', async (req: Request, res: Response) => {
 		}
 
 	} catch (error: Error | any) {
+		console.log(error)
+	}
+})
+
+app.post('/editgame', async (req: Request, res: Response) => {
+	try {
+
+		const { token, gameData, guildId } = req.body
+		
+		if (!token) return res.status(500).json({ message: 'Missing token'});
+
+		if(!gameData) return res.status(500).json({ message: 'Missing game data'});
+
+		const access: any = jwt.verify(token, process.env.jwtSecret as string)
+
+		const clientGuilds = await client.guilds.fetch()
+
+		const inGuild = clientGuilds.filter((guild: any) => {
+			return guild.id === guildId
+		})
+
+		if(!inGuild) return res.status(404).send('Not in guild')
+
+		const guilds = await axios.get('https://discord.com/api/users/@me/guilds', {
+			headers: {
+				Authorization: `Bearer ${access.token}`
+			}
+		})
+
+		if(guilds.data) {
+
+			const ownedGuild = await guilds.data.filter((guild: any) => guild.owner === true && guild.id === guildId)
+
+			if(!ownedGuild) return res.status(404).send('Not in owned guild')
+
+			const game = await Games.findOne({ guildId: guildId})
+
+			if(!game) {
+				return res.status(404).send('Game not set up') 
+			} else {
+				game.currency = gameData.currencyName
+				game.emoji = gameData.gameEmoji
+				game.color = gameData.gameColor
+				game.name = gameData.gameName
+
+				game.save()
+
+				res.json({ message: 'Success', code: 200})
+			}
+
+		}
+
+
+
+	} catch(error: Error | unknown) {
+		console.log(error)
+	}
+})
+
+app.post('/deletegame', async (req: Request, res: Response) => {
+	try {
+		const { token, guildId } = req.body
+
+		const access: any = jwt.verify(token, process.env.jwtSecret as string)
+
+		
+		const guilds = await axios.get('https://discord.com/api/users/@me/guilds', {
+			headers: {
+				Authorization: `Bearer ${access.token}`
+			}
+		})
+
+		if(guilds.data) {
+
+			const ownedGuild = await guilds.data.filter((guild: any) => guild.owner === true && guild.id === guildId)
+
+			if(!ownedGuild) return res.status(404).send('Not in owned guild')
+
+			const game = await Games.findOne({ guildId: guildId})
+
+			if(!game) {
+				res.status(404).send('Game not set up')
+			} else {
+
+				await Games.deleteOne({ guildId: guildId })
+
+				await Gamesaves.deleteMany({ guildId: guildId })
+
+				res.json({ message: 'Success', code: 200})
+			}
+		} else {
+			res.status(500).send('No guilds found')
+		}
+
+		
+	} catch(error: Error | unknown) {
+		console.log(error)
+	}
+})
+
+app.post('/gameusers', async (req: Request, res: Response) => {
+	try {
+
+		const { token, guildId} = req.body
+
+		
+
+	} catch (error: Error | unknown) {
 		console.log(error)
 	}
 })
