@@ -3,7 +3,7 @@ import { Schema, model } from "mongoose";
 const GamesaveSchema = new Schema({
     guildId: String,
     userId: String,
-    money: String,
+    money: Number,
     transactionHistory: [
         {
             Date: Date,

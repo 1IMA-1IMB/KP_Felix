@@ -343,9 +343,78 @@ app.post('/gameusers', async (req: Request, res: Response) => {
 
 		const { token, guildId} = req.body
 
+		if(!token) return res.json({ message: 'No token', code: 500 })
+
+		if(!guildId) return res.status(500).send('Missing guild ID')
+
+		const access: any = jwt.verify(token, process.env.jwtSecret as string)
+
+		const guilds = await axios.get('https://discord.com/api/users/@me/guilds', {
+			headers: {
+				Authorization: `Bearer ${access.token}`
+			}
+		})
+
+		if(guilds.data) {
+
+			const inGuild = await guilds.data.filter((guild: any) => guild.id === guildId)
+
+			if(!inGuild) return res.status(404).send('Not in guild')
+
+			const game = await Games.findOne({ guildId: guildId })
+
+			if(!game) return res.status(404).send('Game not set up')
+
+			const user: any | undefined = await Users.findOne({ token: access.token })
+
+			if(!user) return res.status(404).send('User not found')
+
+			const gameSaves = await Gamesaves.findOne({ guildId: guildId, userId: user.id })
+
+			if(!gameSaves) {
+
+				const newSave = await Gamesaves.create({ guildId: guildId, userId: user.id, money: 0 })
+
+				res.json({ message: 'Created gamesave', user: user, code: 200, gameSave: newSave, game: game })
+			} else {
+
+				res.json({ message: 'Gamesave already exists', user: user, code: 200, gameSave: gameSaves, game: game })
+			}
+		}
 		
 
 	} catch (error: Error | unknown) {
+		console.log(error)
+	}
+})
+
+
+app.post('/updategamesave', async (req: Request, res: Response) => {
+
+	try {
+
+		const { token, guildId, money } = req.body
+
+
+		const access: any = jwt.verify(token, process.env.jwtSecret as string)
+
+		const user = await Users.findOne({ token: access.token })
+
+		if(!user) return res.status(404).send('User not found')
+
+		const gamesave = await Gamesaves.findOne({ userId: user.id, guildId: guildId})
+
+		if(!gamesave) return res.status(404).send('Gamesave not found')
+
+		if(money == gamesave.money) return res.send('No changes made')
+
+		gamesave.money = money
+
+		gamesave.save()
+
+		return res.send('Successfully saved')
+
+	} catch(error: Error | unknown) {
 		console.log(error)
 	}
 })
