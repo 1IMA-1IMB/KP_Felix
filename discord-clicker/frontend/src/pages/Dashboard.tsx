@@ -88,7 +88,7 @@ const Dashboard: React.FC = (): JSX.Element => {
                   onError={({ currentTarget }) => {
                     currentTarget.onerror = null; // prevents looping
                     currentTarget.src =
-                      "https://static-00.iconduck.com/assets.00/no-image-icon-512x512-lfoanl0w.png";
+                      "https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-15.png";
                   }}
                   className=" h-24 w-24 rounded-full"
                 />
