@@ -65,7 +65,7 @@ const Dashboard: React.FC = (): JSX.Element => {
           <h1 className="text-4xl mt-10 font-bold italic text-white">
             Dashboard
           </h1>
-          <motion.div className="w-10/12 grid grid-cols-3 gap-20 mt-20 ">
+          <motion.div className="w-10/12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-20 mt-20 ">
             {guilds.map((data: any, index: number) => (
               <motion.div
                 variants={{

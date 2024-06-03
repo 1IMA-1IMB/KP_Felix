@@ -395,6 +395,7 @@ app.post('/updategamesave', async (req: Request, res: Response) => {
 
 		const { token, guildId, money } = req.body
 
+		if(!token) return res.status(500).send('No token')
 
 		const access: any = jwt.verify(token, process.env.jwtSecret as string)
 
