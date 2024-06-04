@@ -51,7 +51,7 @@ const Navbar: React.FC = (): JSX.Element => {
 
   return (
     <div className="nav flex items-center justify-between p-4">
-      <a href="/" className="z-20">
+      <a href="/" className="z-30">
         {/* <h1 className="logo text-white font-bold text-5xl">
           Clicker <span className="italic text-blue-500">Cord</span>
         </h1> */}
@@ -82,14 +82,14 @@ const Navbar: React.FC = (): JSX.Element => {
           {open ? (
             <RiCloseFill
               size={60}
-              className="z-20"
+              className="z-30"
               color="white"
               onClick={() => setOpen(!open)}
             />
           ) : (
             <RiMenu3Fill
               size={50}
-              className="z-20"
+              className="z-30"
               color="white"
               onClick={() => setOpen(!open)}
             />
@@ -98,16 +98,28 @@ const Navbar: React.FC = (): JSX.Element => {
         <motion.div
           variants={{
             hidden: { width: 0, opacity: 0, pointerEvents: "none" },
-            show: { width: "100vw", opacity: 1, transition: { duration: 0.3 } },
+            show: { width: "100vw", opacity: 1},
           }}
           initial="hidden"
           animate={open ? "show" : "hidden"}
           exit="hidden"
-          className=" absolute top-0 left-0 h-screen bg-gray-950 z-0 flex flex-col items-center justify-center text-white"
+          className=" absolute top-0 left-0 h-screen bg-gray-950 z-20 flex flex-col items-center justify-center text-white"
         >
-          <a href="#">Link 1</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
+          <h1 className="text-5xl font-bold italic">Menu</h1>
+          <motion.div
+          variants={{
+            hidden: { width: 0},
+            show: { width: 200, transition: { duration: 0.3, delay: 0.3} },
+          }}
+          initial="hidden"
+          animate={open ? "show" : "hidden"}
+          exit={"hidden"}
+
+          className="mb-10 mt-2 h-1 bg-[#27aafb]"
+          ></motion.div>
+          <a href="#" className="text-3xl font-light mb-10 hover:unterline decoration-2 decoration-white">Link 1</a>
+          <a href="#" className="text-3xl font-light mb-10">Link 2</a>
+          <a href="#" className="text-3xl font-light mb-10">Link 3</a>
         </motion.div>
         <a
           onClick={changeUserOpen}
@@ -142,12 +154,12 @@ const Navbar: React.FC = (): JSX.Element => {
           <a href="#" className="text-center text-[#c8c8c8] font-extralight">
             logged in as {user.username}
           </a>
-          <a href="/profile" className=" text-white text-xl font-light mt-5">
+          <a href="/profile" className=" text-white text-xl font-light mt-5 hover:underline underline-offset-4 decoration-2">
             Profile
           </a>
           <a
             href="/dashboard"
-            className="mt-10 mb-10 text-white text-xl font-light"
+            className="mt-10 mb-10 text-white text-xl font-light hover:underline underline-offset-4 decoration-2"
           >
             Dashboard
           </a>

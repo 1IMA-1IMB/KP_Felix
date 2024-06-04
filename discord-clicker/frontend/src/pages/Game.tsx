@@ -271,10 +271,10 @@ const Game: React.FC = (): JSX.Element => {
                         <h1
                           className={emojiClass}
                           onClick={() =>
-                            setGameData({ ...gameData, gameEmoji: "🙉" })
+                            setGameData({ ...gameData, gameEmoji: "🍪" })
                           }
                         >
-                          🙉
+                          🍪
                         </h1>
                         <h1
                           className={emojiClass}
@@ -510,10 +510,10 @@ const Game: React.FC = (): JSX.Element => {
                       <h1
                         className={emojiClass}
                         onClick={() =>
-                          setGameData({ ...gameData, gameEmoji: "🙉" })
+                          setGameData({ ...gameData, gameEmoji: "🍪" })
                         }
                       >
-                        🙉
+                        🍪
                       </h1>
                       <h1
                         className={emojiClass}
