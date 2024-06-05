@@ -80,7 +80,7 @@ const Dashboard: React.FC = (): JSX.Element => {
                   delay: index * 0.1,
                 }}
                 key={index}
-                className=" bg-[#142D46] h-80 flex flex-col items-center justify-center rounded-xl text-center"
+                className=" bg-secondarycolor h-80 flex flex-col items-center justify-center rounded-xl text-center"
               >
                 <img
                   src={`https://cdn.discordapp.com/icons/${data.id}/${data.icon}.png`}

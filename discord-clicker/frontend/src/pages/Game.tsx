@@ -105,7 +105,7 @@ const Game: React.FC = (): JSX.Element => {
         <Spinner />
       ) : (
         <div className="min-h-screen flex flex-col items-center ">
-          <div className="game w-11/12 sm:w-10/12 mt-10 bg-[#121b2f] rounded-xl flex flex-col justify-center">
+          <div className="game w-11/12 sm:w-10/12 mt-10 bg-secondarycolor rounded-xl flex flex-col justify-center">
             <div className="top w-full flex gap-5 p-5 items-center justify-between">
               <a href="/dashboard">
                 <motion.div className="flex gap-1 sm:gap-2 items-center hover:cursor-pointer">
