@@ -27,7 +27,7 @@ const Section1 = (logedIn: any) => {
 
   return (
     <>
-    <div className="bg-[linear-gradient(to_right_bottom,rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('./public/ai-hero.png')] bg-cover ">
+    <div className="bg-[linear-gradient(to_right_bottom,rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('https://glafyr.com/ClickerCord/bg-2.jpeg')] bg-cover bg-center h-screen ">
     <Navbar />
     <motion.div
       className="section 1 overflow-x-hidden flex flex-col items-center w-screen "
@@ -112,7 +112,7 @@ const Section1 = (logedIn: any) => {
           animate={mainControls}
           transition={{ duration: 0.3, delay: 0.3 }}
           href="#"
-          className="w-56 h-14 2xl:w-80 2xl:h-20 rounded-xl text-xl bg-gray-700 mb-20 2xl:mb-40 flex items-center justify-center gap-5 text-white transition-all duration-300 hover:bg-opacity-90 hover:bg-gray-500  bg-opacity-90"
+          className="w-56 h-14 2xl:w-80 2xl:h-20 rounded-xl text-xl bg-gray-700 mb-20 xl:mb-32 2xl:mb-40 flex items-center justify-center gap-5 text-white transition-all duration-300 hover:bg-opacity-90 hover:bg-gray-500  bg-opacity-90"
         >
           <button>How to use</button>
         </motion.a>

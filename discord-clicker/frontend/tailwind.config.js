@@ -7,8 +7,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        backgroundcolor: "#120e22",
-        secondarycolor: "#1F1544",
+        backgroundcolor: "#14182c",
+        secondarycolor: "#182C51",
         treitarycolor: "#3b82f6",
         fourthcolor: "#88B0D8",
       },
@@ -17,7 +17,7 @@ export default {
       },
       backgroundImage: {
         'hero-pattern': "linear-gradient(to right bottom, rgba('#7ed56f',0.8), rgba('#28b485',0.8)), url('./ai-hero.png')",
-     },
+      },
     },
   },
   plugins: [],

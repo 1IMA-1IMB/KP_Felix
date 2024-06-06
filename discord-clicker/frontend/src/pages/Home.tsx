@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../compontents/Navbar";
 import Cookies from "js-cookie";
 import Section1 from "../compontents/home/Section1";
 import Section2 from "../compontents/home/Section2";
 import Spinner from "../compontents/Spinner";
+import Section3 from "../compontents/home/Section3";
+import Smallmid from "../compontents/home/Smallmid";
 
 import axios from "axios";
 
@@ -40,6 +41,7 @@ const Home: React.FC = (): JSX.Element => {
         <div className="home overflow-x-hidden">
         <Section1 logedIn={logedIn} />
         <Section2 />
+        <Section3 logedIn={logedIn} />
       </div>
       )}
     </div>

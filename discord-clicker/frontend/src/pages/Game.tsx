@@ -140,7 +140,7 @@ const Game: React.FC = (): JSX.Element => {
                   className="w-full flex flex-col items-center mt-10"
                 >
                   <h1 className="text-white text-center text-3xl font-semibold">
-                    Welcome to your game!
+                    Welcome to your server dashboard!
                   </h1>
                   <p className="text-blue-500 text-xl font-light text-center">
                     Here you can edit your game
