@@ -13,7 +13,7 @@ const Section3 = (logedIn: any) => {
     <div>
         <div className='dashboard flex flex-col-reverse items-center lg:flex-row lg:justify-around gap-10 lg:items-center'>
             <div className=' ml-10 w-11/12 lg:block flex flex-col items-center lg:w-5/12'>
-            <h1 className='text-white text-2xl font-semibold mb-10 px-5 mr-5 2xl:text-7xl'>The dashboard and setup</h1>
+            <h1 className='text-white text-2xl font-semibold mb-10 px-5 mr-5 lg:text-5xl 2xl:text-7xl'>The dashboard and setup</h1>
             <p className=' text-gray-300 font-extralight xl:text-md px-5 2xl:text-2xl'>
 
             Using our bot's dashboard, you can set up your guild's game and share the URL with your friends to play together. The dashboard is easy to use and features a well-guided setup process where mistakes are hard to come by. If you do make a mistake, don't worry. Our comprehensive setup guide is there to help you every step of the way.
