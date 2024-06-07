@@ -21,7 +21,6 @@ const Section2 = () => {
       <div className=" flex w-screen justify-center flex-wrap placespace-x-20 overflow-hidden p-10  ">
         <motion.div
           whileHover={{
-            height: "350px",
             borderWidth: "3px",
             borderColor: "#69f740",
             y: -60,
@@ -39,7 +38,7 @@ const Section2 = () => {
           }}
           initial="hidden"
           animate={mainControls}
-          className="card1 h-80 w-72 min-w-72 min-h-80 m-10 p-5 flex flex-col z-10 items-center text-center rounded-xl border-[#69f740]  bg-black bg-opacity-20"
+          className="card1 h-80 2xl:h-96 w-72 2xl:w-80  min-w-72 min-h-80 m-10 p-5 flex flex-col z-10 items-center text-center rounded-xl border-[#69f740]  bg-black bg-opacity-20"
         >
           <LuPaintbrush2 size={50} color="#69f740" className="mt-4" />
           <h1 className="text-2xl font-bold">Customisability</h1>
@@ -50,7 +49,6 @@ const Section2 = () => {
         </motion.div>
         <motion.div
           whileHover={{
-            height: "350px",
             borderWidth: "3px",
             borderColor: "#3b82f6", 
             y: -60,
@@ -79,10 +77,9 @@ const Section2 = () => {
         </motion.div>
         <motion.div
           whileHover={{
-            height: "350px",
             borderWidth: "3px",
             borderColor: "#f74ef3",
-            y: -60,
+            y: -50,
           }}
           variants={{
             vissible: {
