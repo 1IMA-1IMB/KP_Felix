@@ -10,6 +10,11 @@ const Navbar: React.FC = (): JSX.Element => {
   const [userOpen, setUserOpen] = useState(false);
   const [logedIn, setLogedIn] = useState<boolean>(false);
 
+  const logOut = () => {
+    Cookies.remove("token");
+    window.location.reload()
+  }
+
   const [user, setUser] = useState({
     username: "",
     avatar: "",
@@ -70,21 +75,21 @@ const Navbar: React.FC = (): JSX.Element => {
         <div className="links hidden md:flex h-full items-center gap-10 z-20">
           <a
             href="#"
-            className="text-2xl text-white hover:underline underline-offset-4"
+            className="text-2xl text-white hover:underline underline-offset-8"
           >
-            Link1
+            Commands
           </a>
           <a
             href="#"
-            className="text-2xl text-white hover:underline underline-offset-4"
+            className="text-2xl text-white hover:underline underline-offset-8"
           >
-            Link2
+            Setup Guide
           </a>
           <a
             href="#"
-            className="text-2xl text-white hover:bg-blue-600 transition-all duration-300 ease-out w-32 rounded-lg flex items-center justify-center h-14 bg-blue-500"
+            className="text-2xl text-white hover:bg-blue-600 transition-all duration-300 ease-out w-36 rounded-lg flex items-center justify-center h-14 bg-blue-500"
           >
-            Link3
+            Support
           </a>
         </div>
         <div className="md:hidden flex ">
@@ -129,13 +134,13 @@ const Navbar: React.FC = (): JSX.Element => {
             href="#"
             className="text-3xl font-light mb-10 hover:unterline decoration-2 decoration-white"
           >
-            Link 1
+            Commands
           </a>
           <a href="#" className="text-3xl font-light mb-10">
-            Link 2
+            Setup Guide
           </a>
           <a href="#" className="text-3xl font-light mb-10">
-            Link 3
+            Support
           </a>
         </motion.div>
         <a
@@ -179,10 +184,11 @@ const Navbar: React.FC = (): JSX.Element => {
           </a>
           <a
             href="/dashboard"
-            className="mt-10 mb-10 text-white text-xl font-light hover:underline underline-offset-4 decoration-2"
+            className="mt-10 text-white text-xl font-light hover:underline underline-offset-4 decoration-2"
           >
             Dashboard
           </a>
+          <p onClick={logOut} className="mt-10 mb-10 text-white text-xl font-light hover:underline cursor-pointer underline-offset-8 decoration-2">Sign Out</p>
         </motion.div>
       </div>
     </div>
