@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, StringSelectMenuBuilder, ButtonBuilder, ButtonInteraction, StringSelectMenuOptionBuilder, StringSelectMenuInteraction, CommandInteraction, PermissionFlagsBits, ActionRowBuilder, ActionRow, ComponentType } from "discord.js";
+import { SlashCommandBuilder, StringSelectMenuBuilder, ButtonBuilder, ButtonInteraction, StringSelectMenuOptionBuilder, StringSelectMenuInteraction, CommandInteraction, PermissionFlagsBits, ActionRowBuilder, ActionRow, ComponentType, ButtonStyle } from "discord.js";
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -39,27 +39,24 @@ module.exports = {
         const row: any = new ActionRowBuilder()
             .addComponents(select)
 
-        const addchoices = new StringSelectMenuBuilder()
-            .setCustomId('addchoices')
-            .setMaxValues(1)
-            .setPlaceholder('What type of item do you want to add')
-            .addOptions(
-                new StringSelectMenuOptionBuilder()
-                    .setLabel('Item')
-                    .setDescription('Custom Item')
-                    .setValue('item'),
-                new StringSelectMenuOptionBuilder()
-                    .setLabel('Set Role')
-                    .setDescription('A set role')
-                    .setValue('setrole'),
-                new StringSelectMenuOptionBuilder()
-                    .setLabel('Custom Role')
-                    .setDescription('A custom role')
-                    .setValue('customrole'),
-            )
+
+        const itemButton = new ButtonBuilder()
+            .setLabel('Item')
+            .setStyle(ButtonStyle.Primary)
+            .setCustomId('item')
+
+        const setRoleButton = new ButtonBuilder()
+            .setLabel('Set-Role')
+            .setCustomId('setrole')
+            .setStyle(ButtonStyle.Success)
+
+        const customRoleButton = new ButtonBuilder()
+            .setLabel('Custom-Role')
+            .setCustomId('customrole')
+            .setStyle(ButtonStyle.Danger)
 
         const addRow: any = new ActionRowBuilder()
-            .addComponents(addchoices)
+            .addComponents(itemButton, setRoleButton, customRoleButton)
 
         const response = await interaction.editReply({ content: 'Edit your guild store', components: [row] })
 
@@ -73,10 +70,10 @@ module.exports = {
 
             if (selection === 'add') {
 
+                interaction.deleteReply()
 
-                const response2 = await interaction.followUp({ components: [addRow], ephemeral: true })
+                const response2 = await interaction.followUp({ components: [addRow], content: '', ephemeral: true })
 
-                await interaction.deleteReply()
 
                 const collector2 = await response2.createMessageComponentCollector({ filter: collectorFilter, time: 60_000, componentType: ComponentType.StringSelect })
 
