@@ -1,4 +1,5 @@
-import { SlashCommandBuilder, StringSelectMenuBuilder, ButtonBuilder, ButtonInteraction, StringSelectMenuOptionBuilder, StringSelectMenuInteraction, CommandInteraction, PermissionFlagsBits, ActionRowBuilder, ActionRow, ComponentType, ButtonStyle } from "discord.js";
+import { SlashCommandBuilder, StringSelectMenuBuilder, ButtonBuilder, ButtonInteraction, StringSelectMenuOptionBuilder, StringSelectMenuInteraction, CommandInteraction, PermissionFlagsBits, ActionRowBuilder, ActionRow, ComponentType, ButtonStyle, Message } from "discord.js";
+import Games from '../../models/Games'
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -8,7 +9,7 @@ module.exports = {
 
     async execute(interaction: CommandInteraction) {
 
-        const { guild, user } = interaction
+        const { guild, user, channel } = interaction
 
         await interaction.deferReply({ ephemeral: true })
 
@@ -43,16 +44,16 @@ module.exports = {
         const itemButton = new ButtonBuilder()
             .setLabel('Item')
             .setStyle(ButtonStyle.Primary)
-            .setCustomId('item')
+            .setCustomId('add-item')
 
         const setRoleButton = new ButtonBuilder()
             .setLabel('Set-Role')
-            .setCustomId('setrole')
+            .setCustomId('add-setrole')
             .setStyle(ButtonStyle.Success)
 
         const customRoleButton = new ButtonBuilder()
             .setLabel('Custom-Role')
-            .setCustomId('customrole')
+            .setCustomId('add-customrole')
             .setStyle(ButtonStyle.Danger)
 
         const addRow: any = new ActionRowBuilder()
@@ -62,38 +63,56 @@ module.exports = {
 
         const collectorFilter = (i: any) => i.user.id === interaction.user.id
 
+
+
         const collector = await response.createMessageComponentCollector({ filter: collectorFilter, time: 60_000, componentType: ComponentType.StringSelect })
 
 
-        collector.on('collect', async (i) => {
+        collector.on('collect', async (i: any) => {
             const selection = i.values[0]
 
             if (selection === 'add') {
 
-                interaction.deleteReply()
-
-                const response2 = await interaction.followUp({ components: [addRow], content: '', ephemeral: true })
 
 
-                const collector2 = await response2.createMessageComponentCollector({ filter: collectorFilter, time: 60_000, componentType: ComponentType.StringSelect })
+                await i.deferUpdate()
 
-                collector2.on('collect', async (i: any) => {
-
-                    const selection2 = i.values[0]
-
-                    if (selection2 === 'item') {
-
-                    } else if (selection2 === 'setrole') {
-
-                    } else if (selection2 === 'customrole') {
-
-                    }
-                })
+                interaction.editReply({ components: [addRow], content: '# Add\n\n## What do you want to add to your guild store?\n\n### 🔵 - A set item whch can be sold on the marketplace\n\n### 🟢 - A set role created by you that can be sold on the market place\n\n### 🔴 - A custom role that can be defined by the user themselves, can only be bought once and can not be sold.' })
 
             } else if (selection === 'edit') {
                 await interaction.editReply({ content: 'Edit selected', components: [] })
             } else if (selection === 'delete') {
                 await interaction.editReply({ content: 'Delete selected', components: [] })
+            }
+        })
+
+
+        const buttonCollector = await response.createMessageComponentCollector({ filter: collectorFilter, time: 60_000, componentType: ComponentType.Button })
+
+        buttonCollector.on('collect', async (i: any) => {
+
+            if (i.customId === 'add-item') {
+
+                await i.deferUpdate()
+
+                await interaction.editReply({ components: [], content: '# Item Name: \n\n### Enter the prefered name of your item in this channel, to cancel type "cancel"' })
+
+                if (!interaction.channel) return await interaction.editReply({ content: 'Error', components: [] })
+
+                const collector2 = await interaction.channel.createMessageCollector({ filter: collectorFilter, time: 60_000, max: 1 })
+
+                collector2?.on('collect', async (m: any) => {
+
+                    console.log(m.content)
+
+                    if (m.content === 'cancel') return await interaction.editReply({ content: 'Cancelled', components: [] })
+
+                })
+
+            } else if (i.customId === 'add-setrole') {
+
+            } else if (i.customId === 'add-customrole') {
+
             }
         })
     }
