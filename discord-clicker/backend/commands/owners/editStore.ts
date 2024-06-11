@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, StringSelectMenuBuilder, ButtonBuilder, ButtonInteraction, StringSelectMenuOptionBuilder, StringSelectMenuInteraction, CommandInteraction, PermissionFlagsBits, ActionRowBuilder, ActionRow, ComponentType, ButtonStyle, Message } from "discord.js";
+import { SlashCommandBuilder, StringSelectMenuBuilder, ButtonBuilder, ButtonInteraction, StringSelectMenuOptionBuilder, StringSelectMenuInteraction, CommandInteraction, PermissionFlagsBits, ActionRowBuilder, ActionRow, ComponentType, ButtonStyle, Message, User } from "discord.js";
 import Games from '../../models/Games'
 
 module.exports = {
@@ -99,15 +99,25 @@ module.exports = {
 
                 if (!interaction.channel) return await interaction.editReply({ content: 'Error', components: [] })
 
-                const collector2 = await interaction.channel.createMessageCollector({ filter: collectorFilter, time: 60_000, max: 1 })
 
-                collector2?.on('collect', async (m: any) => {
+                try {
+
+                const collectorFilter2 = (m: Message) => m.author.id === interaction.user.id
+                    
+                const collector2 = interaction.channel?.createMessageCollector({ filter: collectorFilter2, time: 60_000, max: 1 })
+                collector2.on('collect', async (m: Message) => {
+
+                    console.log('Collected some shit!')
 
                     console.log(m.content)
 
                     if (m.content === 'cancel') return await interaction.editReply({ content: 'Cancelled', components: [] })
 
+                    m.delete()
                 })
+                } catch (error: Error | unknown) {
+                    console.log(Error)
+                }
 
             } else if (i.customId === 'add-setrole') {
 
