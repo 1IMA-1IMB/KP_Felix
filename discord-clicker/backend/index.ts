@@ -18,7 +18,7 @@ dotenv.config()
 
 // Bot/discord stuff
 
-const client: any = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildMembers, GatewayIntentBits.MessageContent]})
+const client: any = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildMembers, GatewayIntentBits.MessageContent ]})
 
 client.commands = new Collection()
 

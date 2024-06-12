@@ -20,6 +20,30 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities}) {
+      const newUtilities = {
+        '.scrollbar-thin': {
+          'scrollbarWidth': 'thin',
+          'scrollbarColor': "rgb(59 130 246) rgb(16,17,36)"
+        },
+        '.scrollbar-webkit': {
+          "&::-webkit-scrollbar": {
+            width: "8px"
+          },
+          '&::-webkit-scrollbar-track': {
+            background: "rgb(16,17,36)"
+          },
+          '&::-webkit-scrollbar-thumb': {
+            backgroundColor: "rgb(59 130 246)",
+            borderRadius: "15px",
+          },
+
+        }
+      }
+
+      addUtilities(newUtilities, ["responsive", "hover"])
+    }
+  ],
 }
 

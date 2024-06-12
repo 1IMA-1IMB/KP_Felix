@@ -7,6 +7,7 @@ const gameSchema = new Schema({
     name: String,
     color: String,
     store: [{
+        itemId: Number,
         name: String,
         description: String,
         price: Number,
