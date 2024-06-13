@@ -12,7 +12,10 @@ const gameSchema = new Schema({
         description: String,
         price: Number,
         isCustomRole: Boolean,
-        roleId: String,
+        roleId: {
+            type: String,
+            default: null
+        },
         emoji: String
     }]
 })
