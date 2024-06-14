@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, StringSelectMenuBuilder, ButtonBuilder, ButtonInteraction, StringSelectMenuOptionBuilder, StringSelectMenuInteraction, CommandInteraction, PermissionFlagsBits, ActionRowBuilder, ActionRow, ComponentType, ButtonStyle, Message, User, Role } from "discord.js";
+import { SlashCommandBuilder, StringSelectMenuBuilder, ButtonBuilder, ButtonInteraction, StringSelectMenuOptionBuilder, StringSelectMenuInteraction, CommandInteraction, PermissionFlagsBits, ActionRowBuilder, ActionRow, ComponentType, ButtonStyle, Message, User, Role, EmbedBuilder } from "discord.js";
 import Games from '../../models/Games'
 
 module.exports = {
@@ -27,6 +27,9 @@ module.exports = {
 
         let roleColor: any = '#FFFFFF'
 
+        let item: object
+
+        let page = 0
 
 
         const select = new StringSelectMenuBuilder()
@@ -39,13 +42,9 @@ module.exports = {
                     .setDescription('Add an item to the store')
                     .setValue('add'),
                 new StringSelectMenuOptionBuilder()
-                    .setLabel('Edit Item')
+                    .setLabel('Edit/Delete Item')
                     .setDescription('Edit an item in the store')
                     .setValue('edit'),
-                new StringSelectMenuOptionBuilder()
-                    .setLabel('Delete Item')
-                    .setDescription('Delete an item from the store')
-                    .setValue('delete')
             )
 
         const row: any = new ActionRowBuilder()
@@ -96,14 +95,112 @@ module.exports = {
                     .setStyle(ButtonStyle.Danger)
             )
 
+        const customRoleRow: any = new ActionRowBuilder()
+            .addComponents(
+                new ButtonBuilder()
+                    .setLabel('Accept')
+                    .setCustomId('set-customrole-accept')
+                    .setStyle(ButtonStyle.Success),
+                new ButtonBuilder()
+                    .setLabel('Decline')
+                    .setCustomId('set-customrole-decline')
+                    .setStyle(ButtonStyle.Danger)
+            )
 
         const game = await Games.findOne({ guildId: guild?.id })
 
+
+        const pagesRow = () => {
+            if (page === maxPage && page === 0) {
+                return (
+                    new ActionRowBuilder()
+                        .addComponents(
+                            new ButtonBuilder()
+                                .setLabel('Previous Page')
+                                .setDisabled(true)
+                                .setCustomId('previous')
+                                .setStyle(ButtonStyle.Primary),
+                            new ButtonBuilder()
+                                .setLabel('Next Page')
+                                .setDisabled(true)
+                                .setCustomId('next')
+                                .setStyle(ButtonStyle.Primary)
+                        )
+                )
+            } else if (page === maxPage) {
+                return (
+                    new ActionRowBuilder()
+                        .addComponents(
+                            new ButtonBuilder()
+                                .setLabel('Previous Page')
+                                .setCustomId('previous')
+                                .setStyle(ButtonStyle.Primary),
+                            new ButtonBuilder()
+                                .setLabel('Next Page')
+                                .setDisabled(true)
+                                .setCustomId('next')
+                                .setStyle(ButtonStyle.Primary)
+                        )
+                )
+            } else if (page === 0) {
+                return (
+                    new ActionRowBuilder()
+                        .addComponents(
+                            new ButtonBuilder()
+                                .setLabel('Previous Page')
+                                .setDisabled(true)
+                                .setCustomId('previous')
+                                .setStyle(ButtonStyle.Primary),
+                            new ButtonBuilder()
+                                .setLabel('Next Page')
+                                .setCustomId('next')
+                                .setStyle(ButtonStyle.Primary)
+                        )
+                )
+            } else {
+                return (
+                    new ActionRowBuilder()
+                        .addComponents(
+                            new ButtonBuilder()
+                                .setLabel('Previous Page')
+                                .setCustomId('previous')
+                                .setStyle(ButtonStyle.Primary),
+                            new ButtonBuilder()
+                                .setLabel('Next Page')
+                                .setCustomId('next')
+                                .setStyle(ButtonStyle.Primary)
+                        )
+                )
+            }
+        }
+
+
+
+
         if (!game) return await interaction.editReply('Game not set up run the </setup:1249609686811021393> command to get started!')
+
+
+        const store = game.store
+
+        const maxPage = store.length - 1
+
+        let currentGame = store[page]
 
         const response = await interaction.editReply({ content: 'Edit your guild store', components: [row] })
 
         const collectorFilter = (i: any) => i.user.id === interaction.user.id
+
+        const embed = (title: string, description: string, color: any) => {
+
+            if (!color || !title || !description) return console.log('Error, could not get all fields... ')
+
+            return (
+                new EmbedBuilder()
+                    .setTitle(title)
+                    .setDescription(description)
+                    .setColor(color)
+            )
+        }
 
 
 
@@ -122,9 +219,18 @@ module.exports = {
                 interaction.editReply({ components: [addRow], content: '# Add\n\n## What do you want to add to your guild store?\n\n### 🔵 - A set item whch can be sold on the marketplace\n\n### 🟢 - A set role created by you that can be sold on the market place\n\n### 🔴 - A custom role that can be defined by the user themselves, can only be bought once and can not be sold.' })
 
             } else if (selection === 'edit') {
-                await interaction.editReply({ content: 'Edit selected', components: [] })
-            } else if (selection === 'delete') {
-                await interaction.editReply({ content: 'Delete selected', components: [] })
+
+                i.deferUpdate()
+
+
+                if (store.length < 1) return await interaction.editReply({ content: 'You do not have any items in your guild store yet, add one to gain access to this command!', components: [] })
+
+
+                // const embed2 = embed('Edit Store', '')
+
+                const row: any = pagesRow()
+
+                await interaction.editReply({ content: 'Edit', components: [row] })
             }
         })
 
@@ -445,6 +551,87 @@ module.exports = {
 
                 } else if (i.customId === 'add-customrole') {
 
+                    try {
+
+                        let index = 0
+
+                        const game2 = await Games.findOne({
+                            guildId: interaction.guild?.id, store: {
+                                $in: {
+                                    isCustomRole: true
+                                }
+                            }
+                        })
+
+                        if (!game2) {
+
+                            const collector2 = interaction.channel?.createMessageCollector({ filter: m => m.author.id === interaction.user.id, time: 60_000 * 2, max: 1 })
+
+                            await interaction.editReply({ content: '# Create a custom role\n\n### Enter the price of a custom role for your server.', components: [] })
+
+                            collector2?.on('collect', async m => {
+
+                                if (index == 0) {
+
+                                    const messageNumber = parseInt(m.content)
+
+
+                                    if (m.content.length === 0) {
+
+                                        m.delete()
+
+                                        return await interaction.editReply({ content: 'A price is required!', components: [] })
+                                    }
+
+                                    if (isNaN(messageNumber)) {
+
+                                        m.delete()
+
+                                        return await interaction.editReply({ content: 'Price has to be a number!', components: [] })
+                                    }
+
+                                    console.log(messageNumber)
+
+                                    price = messageNumber
+
+                                    console.log(price)
+
+                                    m.delete()
+
+                                    await interaction.editReply({
+                                        content: `# Custom role:\n\n## Are you sure you want to add custom roles to your guild store.\n\n **Price**: ${price}`, components: [customRoleRow]
+                                    })
+
+                                }
+                            })
+
+                        } else return await interaction.editReply({ content: 'You already have a custom role in your guild store, each guild store can only have one custom role. Please atempt to edit or remove the role to add another one.', components: [] })
+                    } catch (error: Error | unknown) {
+                        console.log(error)
+                    }
+                } else if (i.customId === 'set-customrole-accept') {
+
+                    try {
+
+                        console.log('Price: ' + price)
+
+                        const object = {
+                            itemId: itemId,
+                            isCustomRole: true,
+                            price: price
+                        }
+
+                        game.store.push(object)
+
+                        game.save()
+
+                        await interaction.editReply({ content: 'Successfully added custom role to the guild store!', components: [] })
+                    } catch (error: Error | unknown) {
+                        console.log(error)
+                    }
+                } else if (i.customId === 'set-customrole-decline') {
+
+                    await interaction.editReply({ content: 'Cancelled', components: [] })
                 }
 
             } catch (error: Error | unknown) {
