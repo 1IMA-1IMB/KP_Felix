@@ -230,6 +230,11 @@ module.exports = {
 
                 const row: any = pagesRow()
 
+                const element = store[page]
+
+
+                const embed2 = embed('Edit Store', `**${element.name}**`, '#3b82f6')
+
                 await interaction.editReply({ content: 'Edit', components: [row] })
             }
         })
@@ -251,7 +256,19 @@ module.exports = {
 
                     const length = gameStore.length
 
-                    itemId = length + 1
+                    if(length < 1) {
+                        itemId = 0
+                    } else {
+                        const item: any = gameStore[length - 1]
+
+                        console.log(item)
+
+                        const olditemid = parseInt(item.itemId)
+
+                        itemId = olditemid + 1
+
+                        console.log(olditemid, itemId)
+                    }
 
                     let index = 0
 
