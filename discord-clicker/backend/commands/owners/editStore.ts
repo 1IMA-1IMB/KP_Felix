@@ -437,12 +437,11 @@ module.exports = {
 
                     try {
 
-                        if (!name || !price || !description || !emoji || !itemId) return await interaction.editReply({ content: 'Pleace fill out all the fields!', components: [] })
+                        if (!name || !price || !description || !emoji) return await interaction.editReply({ content: 'Pleace fill out all the fields!', components: [] })
 
                         if (isNaN(price)) return await interaction.editReply({ content: 'Price has to be a number!', components: [] })
 
                         const storeObj = {
-                            itemId: itemId,
                             name: name,
                             description: description,
                             price: price,
