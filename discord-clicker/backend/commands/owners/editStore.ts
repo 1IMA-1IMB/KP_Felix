@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, StringSelectMenuBuilder, ButtonBuilder, ButtonInteraction, StringSelectMenuOptionBuilder, StringSelectMenuInteraction, CommandInteraction, PermissionFlagsBits, ActionRowBuilder, ActionRow, ComponentType, ButtonStyle, Message, User, Role, EmbedBuilder } from "discord.js";
+import { SlashCommandBuilder, StringSelectMenuBuilder, ButtonBuilder, ButtonInteraction, StringSelectMenuOptionBuilder, StringSelectMenuInteraction, CommandInteraction, PermissionFlagsBits, ActionRowBuilder, ActionRow, ComponentType, ButtonStyle, Message, User, Role, EmbedBuilder, roleMention } from "discord.js";
 import Games from '../../models/Games'
 
 module.exports = {
@@ -31,6 +31,52 @@ module.exports = {
 
         let page = 0
 
+        const itemCheck = (object: any) => {
+            if (object.isCustomRole === true) {
+
+                try {
+                    return new EmbedBuilder()
+                        .setTitle('Custom Role')
+                        .setDescription('A fully customisable role that you can define and create yourself.')
+                        .addFields(
+                            { name: 'Price', value: `${object.price}` }
+                        )
+                        .setColor('#3b82f6')
+
+                } catch (error: Error | unknown) {
+                    console.log(error)
+                }
+            } else if (object.roleId) {
+                try {
+
+                    const role: any = guild?.roles.cache.get(object.roleId)
+
+
+                    return new EmbedBuilder()
+                        .setDescription(`# <@&${object.roleId}> \n\n ${object.description}`)
+                        .addFields(
+                            { name: 'Price', value: `${object.price}` }
+                        )
+                        .setColor('#3b82f6')
+
+                } catch (error: Error | unknown) {
+                    console.log(error)
+                }
+            } else {
+
+                try {
+                    return new EmbedBuilder()
+                        .setTitle(`${object.emoji}${object.name}`)
+                        .setDescription(`${object.description}`)
+                        .addFields(
+                            { name: 'Price', value: `${object.price}` }
+                        )
+
+                } catch (error: Error | unknown) {
+                    console.log(error)
+                }
+            }
+        }
 
         const select = new StringSelectMenuBuilder()
             .setCustomId('options')
@@ -186,6 +232,8 @@ module.exports = {
 
         let currentGame = store[page]
 
+
+
         const response = await interaction.editReply({ content: 'Edit your guild store', components: [row] })
 
         const collectorFilter = (i: any) => i.user.id === interaction.user.id
@@ -233,9 +281,9 @@ module.exports = {
                 const element = store[page]
 
 
-                const embed2 = embed('Edit Store', `**${element.name}**`, '#3b82f6')
+                const embed2: any = itemCheck(element)
 
-                await interaction.editReply({ content: 'Edit', components: [row] })
+                await interaction.editReply({ components: [row], embeds: [embed2] })
             }
         })
 
@@ -245,6 +293,20 @@ module.exports = {
         buttonCollector.on('collect', async (i: any) => {
 
             try {
+
+                if (i.customId === 'next') {
+                    page++
+
+                    const element = store[page]
+
+                    i.deferUpdate()
+
+                    const embed2: any = itemCheck(element)
+
+                    const row: any = pagesRow()
+
+                    await interaction.editReply({ embeds: [embed2], components: [row] })
+                }
 
                 if (i.customId === 'add-item') {
 
@@ -256,7 +318,7 @@ module.exports = {
 
                     const length = gameStore.length
 
-                    if(length < 1) {
+                    if (length < 1) {
                         itemId = 0
                     } else {
                         const item: any = gameStore[length - 1]
@@ -595,7 +657,7 @@ module.exports = {
 
                                     if (m.content.length === 0) {
 
-                                        m.delete()
+                                        await m.delete()
 
                                         return await interaction.editReply({ content: 'A price is required!', components: [] })
                                     }
@@ -613,7 +675,7 @@ module.exports = {
 
                                     console.log(price)
 
-                                    m.delete()
+                                    await m.delete()
 
                                     await interaction.editReply({
                                         content: `# Custom role:\n\n## Are you sure you want to add custom roles to your guild store.\n\n **Price**: ${price}`, components: [customRoleRow]
