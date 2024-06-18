@@ -156,6 +156,63 @@ module.exports = {
         const game = await Games.findOne({ guildId: guild?.id })
 
 
+        const editRow = () => {
+
+            if (store[page].isCustomRole) {
+                return new ActionRowBuilder()
+                    .addComponents(
+                        new ButtonBuilder()
+                            .setLabel('Change price')
+                            .setCustomId('edit-price')
+                            .setStyle(ButtonStyle.Success),
+                        new ButtonBuilder()
+                            .setLabel('Delete')
+                            .setCustomId('edit-delete')
+                            .setStyle(ButtonStyle.Danger),
+                    )
+            } else if (store[page].roleId) {
+                return new ActionRowBuilder()
+                    .addComponents(
+                        new ButtonBuilder()
+                            .setLabel('Change price')
+                            .setCustomId('edit-price')
+                            .setStyle(ButtonStyle.Success),
+                        new ButtonBuilder()
+                            .setLabel('Change Description')
+                            .setCustomId('edit-description')
+                            .setStyle(ButtonStyle.Secondary),
+                        new ButtonBuilder()
+                            .setLabel('Delete')
+                            .setCustomId('edit-delete')
+                            .setStyle(ButtonStyle.Danger)
+                    )
+            } else {
+
+                return new ActionRowBuilder()
+                    .addComponents(
+                        new ButtonBuilder()
+                            .setLabel('Change price')
+                            .setCustomId('edit-price')
+                            .setStyle(ButtonStyle.Success),
+                        new ButtonBuilder()
+                            .setLabel('Change Description')
+                            .setCustomId('edit-description')
+                            .setStyle(ButtonStyle.Secondary),
+                        new ButtonBuilder()
+                            .setLabel('Change Icon')
+                            .setCustomId('edit-icon')
+                            .setStyle(ButtonStyle.Primary),
+                        new ButtonBuilder()
+                            .setLabel('Delete')
+                            .setCustomId('edit-delete')
+                            .setStyle(ButtonStyle.Danger)
+                    )
+            }
+        }
+
+
+
+
         const pagesRow = () => {
             if (page === maxPage && page === 0) {
                 return (
@@ -278,12 +335,14 @@ module.exports = {
 
                 const row: any = pagesRow()
 
+                const rowedit = editRow()
+
                 const element = store[page]
 
 
                 const embed2: any = itemCheck(element)
 
-                await interaction.editReply({ components: [row], embeds: [embed2] })
+                await interaction.editReply({ components: [row, rowedit], embeds: [embed2] })
             }
         })
 
@@ -305,7 +364,9 @@ module.exports = {
 
                     const row: any = pagesRow()
 
-                    await interaction.editReply({ embeds: [embed2], components: [row] })
+                    const rowedit = editRow()
+
+                    await interaction.editReply({ embeds: [embed2], components: [row, rowedit] })
                 }
 
                 if (i.customId === 'add-item') {
